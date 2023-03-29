@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "noImplicitAny": true,
+    "jsx": "preserve",
+    "allowJs": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "@fastkit/plugboy/env"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@@/*": [
+        "./*"
+      ],
+    }
+  },
+  "exclude": [
+    "**/dist/**"
+  ]
+}

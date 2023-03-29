@@ -1,0 +1,16 @@
+a.<%= it.selector %>,
+.<%= it.selector %> {
+  position: relative;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--outlineText-color, var(--main-color));
+
+  &.clickable:hover,
+  &:focus {
+    background-color: var(--light-color);
+  }
+
+  &.clickable:active {
+    background-color: var(--deep-color);
+  }
+}

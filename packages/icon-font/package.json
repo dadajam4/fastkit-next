@@ -1,0 +1,61 @@
+{
+  "name": "@fastkit/icon-font",
+  "version": "0.12.8",
+  "description": "Helper to handle icon definitions for Type safe.",
+  "keywords": [
+    "fastkit",
+    "icon"
+  ],
+  "homepage": "https://github.com/dadajam4/fastkit/tree/dev/packages/icon-font#readme",
+  "bugs": {
+    "url": "https://github.com/dadajam4/fastkit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dadajam4/fastkit.git"
+  },
+  "license": "MIT",
+  "author": "dadajam4",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/icon-font.d.ts",
+      "import": {
+        "default": "./dist/icon-font.mjs"
+      }
+    },
+    "./*": "./dist/*"
+  },
+  "main": "./dist/icon-font.mjs",
+  "types": "./dist/icon-font.d.ts",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/icon-font.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "plugboy build",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "eslint": "eslint . --ext ts,tsx,js,vue,html,yaml",
+    "eslint:fix": "eslint . --ext ts,tsx,js,vue,html,yaml --fix",
+    "format": "pnpm run eslint:fix",
+    "lint": "pnpm run eslint",
+    "stub": "plugboy stub",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "_docs": {
+    "scope": "",
+    "feature": "icon",
+    "description": {
+      "en": "Helper to handle icon definitions for Type safe.",
+      "ja": "Typeセーフにアイコンの定義を扱うためのヘルパー。"
+    }
+  }
+}
