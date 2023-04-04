@@ -54,7 +54,7 @@
     "lint": "pnpm run eslint",
     "stub": "plugboy stub",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@fastkit/accept-language": "workspace:*",

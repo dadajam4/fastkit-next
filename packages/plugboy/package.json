@@ -65,7 +65,7 @@
     "eslint:fix": "eslint . --ext ts,tsx,js,vue,html,yaml --fix",
     "lint": "pnpm run eslint",
     "format": "pnpm run eslint:fix",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "test": "vitest run"
   },
   "keywords": [],
@@ -79,6 +79,7 @@
     "bundle-require": "^4.0.1",
     "cac": "^6.7.14",
     "esbuild": "^0.17.12",
+    "execa": "^7.1.1",
     "glob": "^9.3.2",
     "inquirer": "^9.1.5",
     "pkg-types": "^1.0.2",

@@ -26,6 +26,12 @@
         "default": "./dist/media-match.mjs"
       }
     },
+    "./plugboy-dts-preserve": {
+      "types": "./dist/plugboy-dts-preserve.d.ts",
+      "import": {
+        "default": "./dist/plugboy-dts-preserve.mjs"
+      }
+    },
     "./*": "./dist/*"
   },
   "main": "./dist/media-match.mjs",
@@ -34,6 +40,9 @@
     "*": {
       ".": [
         "./dist/media-match.d.ts"
+      ],
+      "plugboy-dts-preserve": [
+        "./dist/plugboy-dts-preserve.d.ts"
       ]
     }
   },
@@ -50,6 +59,12 @@
     "stub": "plugboy stub",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@fastkit/plugboy": "workspace:*"
+  },
+  "peerDependencies": {
+    "@fastkit/plugboy": "workspace:*"
   },
   "buildOptions": {
     "name": "MediaMatch"

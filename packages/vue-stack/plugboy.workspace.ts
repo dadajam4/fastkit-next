@@ -1,4 +1,5 @@
 import { defineWorkspaceConfig } from '@fastkit/plugboy';
+import { colorSchemeDTSPreserve } from '@fastkit/color-scheme/plugboy-dts-preserve';
 
 export default defineWorkspaceConfig({
   entries: {
@@ -6,5 +7,8 @@ export default defineWorkspaceConfig({
       src: './src/index.ts',
       css: true,
     },
+  },
+  dts: {
+    preserveType: [colorSchemeDTSPreserve()],
   },
 });

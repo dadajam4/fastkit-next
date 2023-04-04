@@ -5,7 +5,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { VotPluginOptions } from '../vot';
 import { createSSRDevHandler } from './dev/server';
 
-export * from './proxy';
 export * from './build';
 export * from './generate';
 export * from './dev';

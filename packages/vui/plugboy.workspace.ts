@@ -1,14 +1,7 @@
-import { defineWorkspaceConfig, DTSNormalizeTarget } from '@fastkit/plugboy';
-
-const toDTSNormalizeTarget = (typeName: string): DTSNormalizeTarget => {
-  return {
-    from: new RegExp(`"__${typeName}__"`, 'g'),
-    typeName,
-  };
-};
-
-const toDTSNormalizeTargets = (typeNames: string[]): DTSNormalizeTarget[] =>
-  typeNames.map(toDTSNormalizeTarget);
+import { defineWorkspaceConfig } from '@fastkit/plugboy';
+import { colorSchemeDTSPreserve } from '@fastkit/color-scheme/plugboy-dts-preserve';
+import { mediaMatchDTSPreserve } from '@fastkit/media-match/plugboy-dts-preserve';
+import { iconFontDTSPreserve } from '@fastkit/icon-font/plugboy-dts-preserve';
 
 export default defineWorkspaceConfig({
   entries: {
@@ -17,23 +10,11 @@ export default defineWorkspaceConfig({
       css: true,
     },
   },
-  dtsNormalize: [
-    {
-      targets: toDTSNormalizeTargets([
-        'ThemeName',
-        'PaletteName',
-        'ScopeName',
-        'ColorVariant',
-      ]),
-      pkg: '@fastkit/color-scheme',
-    },
-    {
-      targets: toDTSNormalizeTargets(['MediaMatchKey']),
-      pkg: '@fastkit/media-match',
-    },
-    {
-      targets: toDTSNormalizeTargets(['IconName']),
-      pkg: '@fastkit/icon-font',
-    },
-  ],
+  dts: {
+    preserveType: [
+      colorSchemeDTSPreserve(),
+      mediaMatchDTSPreserve(),
+      iconFontDTSPreserve(),
+    ],
+  },
 });

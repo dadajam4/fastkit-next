@@ -22,7 +22,7 @@ import {
   installResizeDirective,
   useWindow,
 } from '@fastkit/vue-utils';
-import { getDocumentScroller } from '@fastkit/vue-scroller';
+import { getDocumentScroller, UseScroller } from '@fastkit/vue-scroller';
 import { IN_WINDOW } from '@fastkit/helpers';
 
 export function useVueAppLayout(): VueAppLayout {
@@ -64,7 +64,7 @@ export class VueAppLayout {
 
   private _drawers: Ref<VueAppDrawer[]> = ref([]);
   readonly window = useWindow();
-  readonly scroller = getDocumentScroller();
+  readonly scroller: UseScroller = getDocumentScroller();
 
   readonly offset: UnwrapNestedRefs<VueAppLayoutViewportOffsets> = reactive({
     top: 0,

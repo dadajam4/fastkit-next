@@ -16,21 +16,45 @@ import {
 } from '../utils';
 import { PACKAGE_JSON_FILENAME } from '../constants';
 
+/**
+ * Plugboy Project
+ *
+ * @remarks This instance is only created if the project consists of a mono-repo.
+ */
 export class PlugboyProject {
+  /** Path instance of the project directory */
   readonly dir: Path;
+  /** package.json */
   readonly json: ProjectPackageJson;
+  /**
+   * Project Configuration
+   * @see {@link ResolvedProjectConfig}
+   */
   readonly config: ResolvedProjectConfig;
+  /** Names of all packages on which the project depends */
   readonly dependencies: string[];
+  /** Directory names of all workspaces owned by the project */
   readonly resolvedWorkspaces: string[];
 
+  /**
+   * Name of the project's package.json
+   */
   get name() {
     return this.json.name;
   }
 
+  /**
+   * Plug-in List
+   * @see {@link ResolvedProjectConfig.plugins}
+   */
   get plugins() {
     return this.config.plugins;
   }
 
+  /**
+   * List of all user hook settings
+   * @see {@link UserHooks}
+   */
   get hooks(): UserHooks[] {
     const { hooks: _hooks, plugins } = this.config;
     const pluginHooks = plugins.map((plugin) => plugin.hooks);
@@ -94,7 +118,6 @@ export async function getProject<
     json,
     config,
     resolvedWorkspaces,
-    // hooks,
   };
 
   return new PlugboyProject(ctx);

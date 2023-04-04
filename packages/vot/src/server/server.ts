@@ -1,41 +1,62 @@
 import path from 'node:path';
-import express from 'express';
-import { loadConfigFromFile } from 'vite';
-import { proxyMiddleware } from '../dist/tool.mjs';
+import express, { Express } from 'express';
+import { loadConfigFromFile, Plugin, resolveConfig } from 'vite';
+import { proxyMiddleware } from './proxy';
 import module from 'node:module';
+import type { Server } from 'node:http';
+
 const require = module.createRequire(import.meta.url);
 
-export async function serve(opts = {}) {
-  let memwatch;
+export interface ServeOptions {
+  memwatch?: boolean;
+}
+
+export async function serve(opts: ServeOptions = {}) {
+  let memwatch: any;
 
   if (opts.memwatch) {
-    const { createMemwatch } = await import('./memwatch.mjs');
+    const { createMemwatch } = await import('./memwatch');
+
     memwatch = await createMemwatch();
 
     memwatch.memwatcher.start({
       graph: true,
-      graphSetup(setup) {
+      graphSetup(setup: any) {
         setup.metrics.malloc = {
           aggregator: 'avg',
           color: 'cyan',
         };
       },
-      graphAddMetric(turtleGraph, stats) {
+      graphAddMetric(turtleGraph: any, stats: any) {
         turtleGraph.metric('malloc', 'malloc').push(stats.malloced_memory);
       },
     });
   }
 
-  const { path: configPath, config } = await loadConfigFromFile({
+  const loadedConfig = await loadConfigFromFile({
+    // @TODO
+    // mode: process.env.NODE_ENV || 'development',
     command: 'serve',
-  });
+  } as any);
+
+  if (!loadedConfig) {
+    throw new Error(`missing vite config.`);
+  }
+
+  const resolvedConfig = await resolveConfig(loadedConfig.config, 'serve');
+
+  const { path: configPath, config } = loadedConfig;
 
   const root = path.dirname(configPath);
 
-  const host = (config.server && config.server.host) || '0.0.0.0';
-  const port = (config.server && config.server.port) || 3000;
+  const _host = config.server?.host;
+  const host = _host && _host !== true ? _host : '0.0.0.0';
+  const port = config.server?.port || 3000;
 
   const votPlugin = findPlugin('vite:vot');
+  if (!votPlugin) {
+    throw new Error('missing vot plugin.');
+  }
 
   const configureServer = votPlugin && votPlugin.configureServer;
 
@@ -59,24 +80,33 @@ export async function serve(opts = {}) {
     });
   }
 
-  let router = server;
+  let router: Express = server;
   if (config.base) {
-    router = express.Router();
+    router = express.Router() as Express;
     server.use(config.base, router);
   }
 
-  if (config.server.proxy) {
-    router.use(proxyMiddleware(null, config));
+  if (config.server?.proxy) {
+    router.use(proxyMiddleware(null, resolvedConfig));
   }
 
   if (configureServer) {
+    const handler =
+      typeof configureServer === 'function'
+        ? configureServer
+        : configureServer.handler;
     const use = router.use.bind(router);
-    await configureServer({ middlewares: { use } });
+    await handler({
+      middlewares: {
+        use,
+      },
+    } as any);
   }
 
   // Serve every static asset route
   for (const asset of ssr.assets || []) {
-    router.use('/' + asset, express.static(path.join(dist, 'client', asset)));
+    const staticHandler = express.static(path.join(dist, 'client', asset)); // @TODO Express internal bug??
+    router.use('/' + asset, staticHandler);
   }
 
   // Everything else is treated as a "rendering request"
@@ -102,7 +132,7 @@ export async function serve(opts = {}) {
     response.end(html);
   });
 
-  const launched = await new Promise((resolve, reject) => {
+  const launched = await new Promise<Server>((resolve, reject) => {
     try {
       const launched = server.listen(port, host, () => {
         console.log(`Server started: http://localhost:${port}`);
@@ -119,17 +149,24 @@ export async function serve(opts = {}) {
     host,
   };
 
-  function findPlugin(pluginName, buckets = config.plugins) {
+  function findPlugin(
+    pluginName: string,
+    buckets = config.plugins,
+  ): Plugin | undefined {
+    if (!buckets) return;
     for (const row of buckets) {
       if (Array.isArray(row)) {
         const hit = findPlugin(pluginName, row);
         if (hit) return hit;
       }
-      if (row.name === pluginName) {
+      if (
+        row &&
+        typeof row !== 'boolean' &&
+        'name' in row &&
+        row.name === pluginName
+      ) {
         return row;
       }
     }
   }
 }
-
-export default serve;

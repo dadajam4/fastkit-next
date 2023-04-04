@@ -1,6 +1,6 @@
 import { InjectionKey, inject, onBeforeUnmount } from 'vue';
 import type { VuePageControl, UseVuePageControlOptions } from './composables';
-// import { VuePageError } from './logger';
+import { VuePageError } from './logger';
 
 export const VuePageControlInjectionKey: InjectionKey<VuePageControl> =
   Symbol();

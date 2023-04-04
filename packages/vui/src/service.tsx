@@ -17,7 +17,7 @@ import { LocationService, setDefaultRouterLink } from '@fastkit/vue-utils';
 import { VForm } from './components/VForm';
 import { VTextField, TextFieldInput } from './components/VTextField';
 import { VueForm, FormControlHinttipDelay } from '@fastkit/vue-form-control';
-import { getDocumentScroller } from '@fastkit/vue-scroller';
+import { getDocumentScroller, UseScroller } from '@fastkit/vue-scroller';
 import { ControlSize } from './schemes';
 
 export type UseLinkResult = ReturnType<typeof useLink>;
@@ -188,7 +188,7 @@ export class VuiService {
   readonly stack: VueStackService;
   readonly useLink: typeof useLink;
 
-  get scroller() {
+  get scroller(): UseScroller {
     return getDocumentScroller();
   }
 

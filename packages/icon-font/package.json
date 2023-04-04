@@ -25,6 +25,12 @@
         "default": "./dist/icon-font.mjs"
       }
     },
+    "./plugboy-dts-preserve": {
+      "types": "./dist/plugboy-dts-preserve.d.ts",
+      "import": {
+        "default": "./dist/plugboy-dts-preserve.mjs"
+      }
+    },
     "./*": "./dist/*"
   },
   "main": "./dist/icon-font.mjs",
@@ -33,6 +39,9 @@
     "*": {
       ".": [
         "./dist/icon-font.d.ts"
+      ],
+      "plugboy-dts-preserve": [
+        "./dist/plugboy-dts-preserve.d.ts"
       ]
     }
   },
@@ -49,6 +58,12 @@
     "stub": "plugboy stub",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@fastkit/plugboy": "workspace:*"
+  },
+  "peerDependencies": {
+    "@fastkit/plugboy": "workspace:*"
   },
   "_docs": {
     "scope": "",

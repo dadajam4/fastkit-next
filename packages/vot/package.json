@@ -31,6 +31,12 @@
         "default": "./dist/tool.mjs"
       }
     },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": {
+        "default": "./dist/server.mjs"
+      }
+    },
     "./*": "./dist/*"
   },
   "main": "./dist/vot.mjs",
@@ -42,6 +48,9 @@
       ],
       "tool": [
         "./dist/tool.d.ts"
+      ],
+      "server": [
+        "./dist/server.d.ts"
       ]
     }
   },
@@ -49,7 +58,6 @@
     "vot": "./bin/vot.mjs"
   },
   "files": [
-    "vot.d.ts",
     "bin",
     "dist"
   ],
@@ -62,7 +70,7 @@
     "lint": "pnpm run eslint",
     "stub": "plugboy stub",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@fastkit/helpers": "workspace:*",
@@ -70,6 +78,7 @@
     "@fastkit/vue-utils": "workspace:*",
     "@rollup/plugin-replace": "^5.0.2",
     "@types/connect": "^3.4.35",
+    "@types/express": "^4.17.17",
     "@types/http-proxy": "^1.17.10",
     "@types/node": "^18.11.19",
     "@vitejs/plugin-vue": "^4.1.0",

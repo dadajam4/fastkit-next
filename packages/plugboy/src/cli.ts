@@ -5,6 +5,14 @@ import pkg from '../package.json';
 export async function main() {
   const cli = cac('plugboy');
   cli.version(pkg.version);
+
+  cli
+    .command('json', 'Apply workspace settings in package.json.')
+    .action(async (files, options) => {
+      const workspace = await getWorkspace();
+      await workspace.preparePackageJSON();
+    });
+
   cli
     .command('stub', 'Link workspace distributions and source directories.')
     .action(async (files, options) => {

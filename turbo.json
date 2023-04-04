@@ -1,14 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
-    "stub": {
-      "inputs": [
-        "src/**/*",
-        "public/**/*",
-        "plugboy.workspace.ts"
-      ],
-      "outputs": ["dist/**"]
-    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": [
@@ -21,6 +13,7 @@
     "lint": {},
     "format": {},
     "typecheck": {
+      "dependsOn": ["^typecheck"],
       "inputs": [
         "src/**/*.ts",
         "src/**/*.tsx",

@@ -1,13 +1,15 @@
 export async function createMemwatch() {
-  const { getGc } = await import('./expose-gc.mjs');
+  const { getGc } = await import('./expose-gc');
   const gc = getGc();
 
-  let memwatcher;
-  let memwatch;
+  let memwatcher: any;
+  let memwatch: any;
 
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     memwatcher = await import('node-memwatcher');
-  } catch (err) {
+  } catch (err: any) {
     if (err.code === 'MODULE_NOT_FOUND') {
       console.warn('For memory monitoring, "node-memwatcher" is required.');
       process.exit(1);
@@ -17,8 +19,10 @@ export async function createMemwatch() {
   }
 
   try {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     memwatch = await import('@airbnb/node-memwatch');
-  } catch (err) {
+  } catch (err: any) {
     if (err.code === 'MODULE_NOT_FOUND') {
       console.warn(
         'For memory monitoring, "@airbnb/node-memwatch" is required.',
@@ -48,8 +52,8 @@ export async function createMemwatch() {
     diff: () => {
       const diff = hd.end();
       hd = new memwatch.HeapDiff();
-      const suspicious = diff.change.details.filter((row) => row['+'] > 0);
-      suspicious.sort((a, b) => {
+      const suspicious = diff.change.details.filter((row: any) => row['+'] > 0);
+      suspicious.sort((a: any, b: any) => {
         const ap = a['+'];
         const bp = b['+'];
         if (ap > bp) return -1;

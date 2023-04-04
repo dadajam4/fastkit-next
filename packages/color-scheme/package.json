@@ -25,6 +25,12 @@
         "default": "./dist/color-scheme.mjs"
       }
     },
+    "./plugboy-dts-preserve": {
+      "types": "./dist/plugboy-dts-preserve.d.ts",
+      "import": {
+        "default": "./dist/plugboy-dts-preserve.mjs"
+      }
+    },
     "./*": "./dist/*"
   },
   "main": "./dist/color-scheme.mjs",
@@ -33,6 +39,9 @@
     "*": {
       ".": [
         "./dist/color-scheme.d.ts"
+      ],
+      "plugboy-dts-preserve": [
+        "./dist/plugboy-dts-preserve.d.ts"
       ]
     }
   },
@@ -53,6 +62,12 @@
   "dependencies": {
     "@fastkit/color": "workspace:*",
     "@fastkit/tiny-logger": "workspace:*"
+  },
+  "devDependencies": {
+    "@fastkit/plugboy": "workspace:*"
+  },
+  "peerDependencies": {
+    "@fastkit/plugboy": "workspace:*"
   },
   "buildOptions": {
     "name": "ColorScheme"

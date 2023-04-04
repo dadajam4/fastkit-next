@@ -1,10 +1,12 @@
 import { Options, build } from 'tsup';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import type { PlugboyWorkspace } from './workspace';
-import { TSUP_SYNC_OPTIONS, ResolvedDTSNormalizeSettings } from '../types';
+import type { PlugboyWorkspace, WorkspaceObjectExport } from './workspace';
+import { TSUP_SYNC_OPTIONS, NormalizedDTSPreserveTypeSettings } from '../types';
 import type { OutputFile, Plugin } from 'esbuild';
-import { copyDirSync } from '../utils';
+import { copyDirSync, rmrf } from '../utils';
+import { emitDTS } from './dts';
+import { glob } from 'glob';
 
 const SHEBANG_MATCH_RE = /^(#!.+?)\n/;
 type EnvVarName = '__PLUGBOY_DEV__' | '__PLUGBOY_STUB__';
@@ -25,6 +27,10 @@ export class Builder {
     return this.workspace.entry;
   }
 
+  get dts() {
+    return this.workspace.dts;
+  }
+
   constructor(workspace: PlugboyWorkspace) {
     this.workspace = workspace;
   }
@@ -33,16 +39,18 @@ export class Builder {
     let { _tsupOptions } = this;
     if (_tsupOptions) return _tsupOptions;
 
-    const { entry } = this;
+    const { entry, dts } = this;
 
     const esbuildPlugins = await this.workspace.getESBuildPlugins();
 
     _tsupOptions = {
       publicDir: true,
       format: ['esm'],
-      dts: {
-        resolve: ['@fastkit/plugboy'],
-      },
+      dts: dts.inline
+        ? false
+        : {
+            resolve: ['@fastkit/plugboy'],
+          },
       treeshake: true,
       esbuildPlugins,
       entry,
@@ -132,12 +140,16 @@ function __plugboyPublicDir(...paths) {
     const location = path.join(toRelativeDir, toParsed.base);
     const source = await fs.readFile(to, 'utf-8');
     const shebang = source.match(SHEBANG_MATCH_RE)?.[1];
+    const STUB_FN_ERROR = `() => { throw new Error('Path resolution methods cannot be executed in stub mode.') }`;
     const PLUGBOY_ENVS: Record<EnvVarName | EnvFnName, string> = {
       __PLUGBOY_DEV__: 'true',
       __PLUGBOY_STUB__: 'true',
-      __plugboyWorkspaceDir: `(...paths) => path.join('${this.workspace.dir.value}', ...paths)`,
-      __plugboySrcDir: `(...paths) => path.join(__plugboySrcDir(), 'src', ...paths)`,
-      __plugboyPublicDir: `(...paths) => path.join(__plugboySrcDir(), 'dist', ...paths)`,
+      __plugboyWorkspaceDir: STUB_FN_ERROR,
+      __plugboySrcDir: STUB_FN_ERROR,
+      __plugboyPublicDir: STUB_FN_ERROR,
+      // __plugboyWorkspaceDir: `(...paths) => path.join('${this.workspace.dir.value}', ...paths)`,
+      // __plugboySrcDir: `(...paths) => path.join(__plugboySrcDir(), 'src', ...paths)`,
+      // __plugboyPublicDir: `(...paths) => path.join(__plugboySrcDir(), 'dist', ...paths)`,
     };
     const ENV_INJECTS = Object.entries(PLUGBOY_ENVS)
       .map(([envName, variable]) => `globalThis.${envName} = ${variable};`)
@@ -181,11 +193,13 @@ function __plugboyPublicDir(...paths) {
 
   normalizeDTSBySettings(
     dts: string,
-    settings: ResolvedDTSNormalizeSettings,
+    settings: NormalizedDTSPreserveTypeSettings,
   ): string | undefined {
     const { targets, pkg } = settings;
+    const myPackageName = this.workspace.json.name;
+    const packageIsOwn = myPackageName === pkg;
     const pkgImports = (() => {
-      if (!pkg) return;
+      if (!pkg || packageIsOwn) return;
 
       const importRe = new RegExp(`import {([^\\{\\}]+)} from '${pkg}'`);
       const importMatched = dts.match(importRe);
@@ -232,7 +246,7 @@ function __plugboyPublicDir(...paths) {
           `import { $1, ${appends.join(', ')} } from '${pkg}'`,
         );
       }
-    } else if (pkg) {
+    } else if (pkg && !packageIsOwn) {
       const mods: string[] = [];
       hitTypeNames.forEach((typeName) => {
         if (!dts.includes(`export declare type ${typeName} = `)) {
@@ -240,7 +254,7 @@ function __plugboyPublicDir(...paths) {
         }
       });
       if (mods.length) {
-        dts = `import { ${targets.join(', ')} } from '${pkg}';\n${dts}`;
+        dts = `import { ${mods.join(', ')} } from '${pkg}';\n${dts}`;
       }
     }
     return dts;
@@ -248,10 +262,10 @@ function __plugboyPublicDir(...paths) {
 
   async normalizeDTSFile(filePath: string) {
     const dts = await fs.readFile(filePath, 'utf-8');
-    const { dtsNormalize } = this.workspace;
+    const { preserveType } = this.dts;
     let normalized = dts;
     let processed = false;
-    for (const settings of dtsNormalize) {
+    for (const settings of preserveType) {
       const _normalized = this.normalizeDTSBySettings(normalized, settings);
       if (_normalized) {
         processed = true;
@@ -264,13 +278,52 @@ function __plugboyPublicDir(...paths) {
     await fs.writeFile(filePath, normalized, 'utf-8');
   }
 
-  async normalizeDTS() {
-    const { dtsNormalize, dtsFiles } = this.workspace;
-    if (!dtsNormalize.length || !dtsFiles.length) return;
+  async normalizeDTSFiles(dtsFiles: string[] = this.workspace.dtsFiles) {
+    const { preserveType } = this.dts;
+    if (!preserveType.length || !dtsFiles.length) return;
 
     await Promise.all(
       dtsFiles.map((filePath) => this.normalizeDTSFile(filePath)),
     );
+  }
+
+  async emitInlineDTS() {
+    const { dir, dirs, exports } = this.workspace;
+    const cwd = dir.value;
+    const outDir = dirs.dist.join('.dts-generate').value;
+    const dtsSrcDir = path.join(outDir, 'src');
+    const dtsDest = dirs.dist.join('.dts').value;
+
+    await emitDTS({
+      cwd,
+      outDir,
+    });
+
+    await fs.rename(dtsSrcDir, dtsDest);
+    await rmrf(outDir);
+
+    const objectExports: WorkspaceObjectExport[] = [];
+
+    exports.forEach(({ at }) => {
+      typeof at === 'object' && objectExports.push(at);
+    });
+
+    await Promise.all(
+      objectExports.map(async (at) => {
+        const typesDir = path.dirname(at.types);
+        const dtsDestDir = path.dirname(at.dtsDest);
+        const relativeDir = path.relative(typesDir, dtsDestDir);
+        const relativePath = path.join(
+          relativeDir,
+          path.basename(at.dtsDest).replace(/\.d\.ts$/, ''),
+        );
+        const code = `export * from './${relativePath}';`;
+        await fs.writeFile(at.types, code, 'utf-8');
+      }),
+    );
+
+    const dtsFiles = await glob(path.join(dtsDest, '**/*.d.ts'));
+    await this.normalizeDTSFiles(dtsFiles);
   }
 
   async build() {
@@ -305,6 +358,11 @@ function __plugboyPublicDir(...paths) {
         );
       },
     });
-    await this.normalizeDTS();
+
+    if (this.dts.inline) {
+      await this.emitInlineDTS();
+    } else {
+      await this.normalizeDTSFiles();
+    }
   }
 }

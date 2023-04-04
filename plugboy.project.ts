@@ -49,12 +49,11 @@ export default defineProjectConfig({
     },
   ],
   tsconfig: {
-    extends: '../../tsconfig',
+    extends: '../../tsconfig.base',
     compilerOptions: {
       baseUrl: '.',
       paths: {
-        '@@/*': ['../../*'],
-        '~/*': ['./*'],
+        '~/*': ['./src/*'],
       },
     },
   },

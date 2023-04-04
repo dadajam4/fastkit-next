@@ -12,6 +12,7 @@ import {
 } from '../../schemes/generate';
 import http, { Server } from 'node:http';
 import chalk from 'chalk';
+import dns from 'node:dns';
 
 function isIncomingMessage(source: unknown): source is http.IncomingMessage {
   return (
@@ -43,6 +44,9 @@ function httpRequest(options: http.RequestOptions) {
 }
 
 export async function generate(_config?: ResolvedConfig) {
+  // @FIXME Node18用の対策。もうちょっと良い解決がありそう
+  dns.setDefaultResultOrder('ipv4first');
+
   const viteConfig = _config || (await resolveViteConfig());
   const distDir =
     viteConfig.build?.outDir ?? path.resolve(process.cwd(), 'dist');
@@ -60,7 +64,7 @@ export async function generate(_config?: ResolvedConfig) {
     return;
   }
 
-  const { serve } = await import('@fastkit/vot/bin/serve-fn' as any);
+  const { serve } = await import('../../server');
 
   let basePrefix = '';
   let viteBase = viteConfig.base;
@@ -88,6 +92,13 @@ export async function generate(_config?: ResolvedConfig) {
 
   const PAGES_PATH = normalizePath(
     `${basePrefix.replace(/\/$/, '')}/${VOT_GENERATE_PAGES_PATH}/`,
+  );
+
+  console.log(
+    '■■■■',
+    host === '0.0.0.0' ? 'localhost' : host,
+    port,
+    PAGES_PATH,
   );
 
   const routes = JSON.parse(

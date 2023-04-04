@@ -6,6 +6,7 @@ import {
   ExtractPropTypes,
   computed,
   ref,
+  Ref,
 } from 'vue';
 import {
   useScrollerControl,
@@ -47,8 +48,8 @@ export interface VScrollerRef {
   scroller: ScrollerControl;
 }
 
-export function useVScrollerRef() {
-  return ref<VScrollerRef>(null as any);
+export function useVScrollerRef(): Ref<VScrollerRef | null> {
+  return ref(null);
 }
 
 export const VScroller = defineComponent({

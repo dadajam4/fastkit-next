@@ -10,7 +10,6 @@ import {
   WorkspaceEntry,
   RawWorkspaceEntries,
   WorkspaceEntries,
-  resolveDTSNormalizeSettings,
 } from '../types';
 import { findConfig } from './file';
 import {
@@ -53,18 +52,12 @@ export function resolveRawWorkspaceEntries(
 export async function resolveUserWorkspaceConfig(
   userConfig: UserWorkspaceConfig,
 ): Promise<ResolvedWorkspaceConfig> {
-  const {
-    ignoreProjectConfig = false,
-    entries,
-    plugins,
-    dtsNormalize = [],
-  } = userConfig;
+  const { ignoreProjectConfig = false, entries, plugins } = userConfig;
   return {
     ...userConfig,
     ignoreProjectConfig,
     entries: resolveRawWorkspaceEntries(entries),
     plugins: await resolveUserPluginOptions(plugins),
-    dtsNormalize: dtsNormalize.map(resolveDTSNormalizeSettings),
   };
 }
 

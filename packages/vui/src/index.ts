@@ -8,10 +8,10 @@ export * from '@fastkit/rules';
 export * from '@fastkit/vue-app-layout';
 export * from '@fastkit/vue-color-scheme';
 export * from '@fastkit/vue-form-control';
-export * from '@fastkit/vue-page';
 export * from '@fastkit/vue-scroller';
 export * from '@fastkit/vue-stack';
 export * from '@fastkit/vue-utils';
+export * from '@fastkit/vue-loading';
 
 export * from './schemes';
 export * from './composables';

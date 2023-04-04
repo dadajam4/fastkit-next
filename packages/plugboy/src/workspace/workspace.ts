@@ -15,6 +15,8 @@ import {
   UserHooks,
   BuildedHooks,
   ESBuildPlugin,
+  mergeDTSSettingsList,
+  NormalizedDTSSettings,
 } from '../types';
 import { Path } from '../path';
 import { WORKSPACE_SPEC_PREFIX } from '../constants';
@@ -40,9 +42,20 @@ export type WorkspaceStubLink =
 export type WorkspaceStubLinkType = WorkspaceStubLink['type'];
 
 export interface WorkspaceObjectExport {
+  src: string;
   types: string;
+  dtsDest: string;
   import: {
     default: string;
+  };
+}
+
+function extractWorkspaceObjectExport(at: string | WorkspaceObjectExport) {
+  if (typeof at === 'string') return at;
+  const { types, import: _import } = at;
+  return {
+    types,
+    import: _import,
   };
 }
 
@@ -88,14 +101,11 @@ export class PlugboyWorkspace {
   readonly plugins: Plugin[];
   readonly hooks: BuildedHooks;
   readonly dtsFiles: string[] = [];
+  readonly dts: NormalizedDTSSettings;
   private _json: WorkspacePackageJson;
 
   get json() {
     return this._json;
-  }
-
-  get dtsNormalize() {
-    return this.config.dtsNormalize;
   }
 
   constructor(ctx: WorkspaceSetupContext) {
@@ -110,6 +120,7 @@ export class PlugboyWorkspace {
       meta,
       plugins,
       hooks,
+      dts,
     } = ctx;
 
     this.name = dir.basename;
@@ -123,6 +134,7 @@ export class PlugboyWorkspace {
     this.config = config;
     this.plugins = plugins;
     this.hooks = hooks;
+    this.dts = dts;
 
     const entry: Record<string, string> = {};
     const exports: WorkspaceExport[] = [
@@ -160,10 +172,21 @@ export class PlugboyWorkspace {
       }
 
       const types = `./dist/${normalizedId}.d.ts`;
+      const dtsDest = `./dist/${src
+        .replace(/^\.\/src/, '.dts')
+        .replace(/\.ts$/, '.d.ts')}`;
+
       this.dtsFiles.push(dir.join(types).value);
       exports.push({
         id: exportId,
-        at: { types, import: { default: dest } },
+        at: {
+          src,
+          types,
+          dtsDest,
+          import: {
+            default: dest,
+          },
+        },
         stubLink: {
           from: destFullPath,
           to: dir.join(src).value,
@@ -194,15 +217,16 @@ export class PlugboyWorkspace {
     let mainTypes: string | undefined;
 
     exports.forEach(({ id, at }) => {
-      _exports[id] = at;
-      if (typeof at !== 'object') return;
+      const _at = extractWorkspaceObjectExport(at);
+      _exports[id] = _at;
+      if (typeof _at !== 'object') return;
       const isMainExport = id === '.';
       const trimedId = isMainExport ? id : id.replace(/^\.\//, '');
-      typesVersions[trimedId] = [at.types];
+      typesVersions[trimedId] = [_at.types];
 
       if (isMainExport) {
-        main = at.import.default;
-        mainTypes = at.types;
+        main = _at.import.default;
+        mainTypes = _at.types;
       }
     });
 
@@ -375,6 +399,8 @@ export async function getWorkspace<
   const resolvedHooks = await resolveUserHooks(..._hooks);
   const hooks = buildHooks(resolvedHooks);
 
+  const dts = mergeDTSSettingsList(project?.config.dts, config.dts);
+
   const ctx: WorkspaceSetupContext = {
     dir,
     json,
@@ -386,6 +412,7 @@ export async function getWorkspace<
     meta,
     plugins,
     hooks,
+    dts,
   };
 
   await hooks.setupWorkspace(ctx);

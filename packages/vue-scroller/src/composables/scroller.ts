@@ -311,7 +311,7 @@ export type UseScroller = ReturnType<typeof useScrollerControl>;
 
 let _documentScroller: UseScroller | undefined;
 
-export function getDocumentScroller() {
+export function getDocumentScroller(): UseScroller {
   if (!_documentScroller) {
     _documentScroller = useScrollerControl({ el: 'body' });
   }

@@ -9,7 +9,6 @@ declare module '@vue/runtime-core' {
 export function installVuePageControl(settings: VuePageControlSettings) {
   const pageControl = new VuePageControl(settings);
   settings.app.provide(VuePageControlInjectionKey, pageControl);
-  console.log('provideした', VuePageControlInjectionKey, typeof window);
   settings.app.config.globalProperties.$vpc = pageControl;
   return pageControl;
 }
