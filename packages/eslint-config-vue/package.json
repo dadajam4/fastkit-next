@@ -41,6 +41,6 @@
   "dependencies": {
     "@fastkit/eslint-config": "workspace:*",
     "eslint-plugin-vue": "^9.10.0",
-    "vue-eslint-parser": "^9.1.0"
+    "vue-eslint-parser": "^9.1.1"
   }
 }

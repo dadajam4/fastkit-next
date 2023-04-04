@@ -43,7 +43,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@babel/core": "^7.21.3",
+    "@babel/core": "^7.21.4",
     "@babel/plugin-transform-typescript": "^7.21.3",
     "@vue/babel-plugin-jsx": "^1.1.1"
   },
