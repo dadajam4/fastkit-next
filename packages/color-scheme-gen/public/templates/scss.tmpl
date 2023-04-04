@@ -37,80 +37,82 @@
 }
 
 @mixin dump-color-scheme($with-foundation: false) {
-  // $default-resolved: false;
-  $palette: null;
+  @layer color-scheme {
+    // $default-resolved: false;
+    $palette: null;
 
-  @each $theme-name, $theme in $themes {
-    $selector: '.' + $theme-name + '-theme';
-    // $selector: if($default-resolved, $selector, ':root, ' + $selector);
-    // $default-resolved: true;
+    @each $theme-name, $theme in $themes {
+      $selector: '.' + $theme-name + '-theme';
+      // $selector: if($default-resolved, $selector, ':root, ' + $selector);
+      // $default-resolved: true;
 
-    $palette: map-get($theme, palette);
-    $scope-defaults: map-get($theme, scope-defaults);
-    $scopes: map-get($theme, scopes);
+      $palette: map-get($theme, palette);
+      $scope-defaults: map-get($theme, scope-defaults);
+      $scopes: map-get($theme, scopes);
 
-    #{$selector} {
-      --link-color: #{palette-color(link)};
+      #{$selector} {
+        --link-color: #{palette-color(link)};
 
-      @if $with-foundation {
-        @include dump-theme-foundation;
-      }
-
-      @each $palette-name, $value in $palette {
-        $key: "--palette-" + $palette-name;
-        #{$key}: #{$value};
-      }
-
-      $default-scope: map-get($scope-defaults, default);
-      @if ($default-scope != null) {
-        @each $key, $value in $default-scope {
-          --#{$key}-color: #{$value};
+        @if $with-foundation {
+          @include dump-theme-foundation;
         }
-      }
 
-      @each $scope-name, $scope in $scopes {
-        $selector: '.' + $scope-name + '-scope';
-        #{$selector} {
-          @each $key, $value in $scope {
-            @if $key != 'name' {
+        @each $palette-name, $value in $palette {
+          $key: "--palette-" + $palette-name;
+          #{$key}: #{$value};
+        }
+
+        $default-scope: map-get($scope-defaults, default);
+        @if ($default-scope != null) {
+          @each $key, $value in $default-scope {
+            --#{$key}-color: #{$value};
+          }
+        }
+
+        @each $scope-name, $scope in $scopes {
+          $selector: '.' + $scope-name + '-scope';
+          #{$selector} {
+            @each $key, $value in $scope {
+              @if $key != 'name' {
+                --#{$key}-color: #{$value};
+              }
+            }
+          }
+        }
+
+        $disabled-scope: map-get($scope-defaults, disabled);
+        @if ($disabled-scope != null) {
+          [disabled], .disabled {
+            @each $key, $value in $disabled-scope {
               --#{$key}-color: #{$value};
             }
           }
         }
       }
+    }
 
-      $disabled-scope: map-get($scope-defaults, disabled);
-      @if ($disabled-scope != null) {
-        [disabled], .disabled {
-          @each $key, $value in $disabled-scope {
-            --#{$key}-color: #{$value};
-          }
-        }
+    @if $with-foundation {
+      a {
+        color: var(--link-color);
       }
     }
-  }
 
-  @if $with-foundation {
-    a {
-      color: var(--link-color);
-    }
-  }
+    <%~ await it.allVariantsScss() %>
 
-  <%~ await it.allVariantsScss() %>
+    @each $palette-name, $value in $palette {
+      $_value: palette-color($palette-name);
 
-  @each $palette-name, $value in $palette {
-    $_value: palette-color($palette-name);
+      .#{$palette-name + '-background'} {
+        background: $_value;
+      }
 
-    .#{$palette-name + '-background'} {
-      background: $_value;
-    }
+      .#{$palette-name + '-text'} {
+        color: $_value;
+      }
 
-    .#{$palette-name + '-text'} {
-      color: $_value;
-    }
-
-    .#{$palette-name + '-border'} {
-      border-color: $_value;
+      .#{$palette-name + '-border'} {
+        border-color: $_value;
+      }
     }
   }
 }
