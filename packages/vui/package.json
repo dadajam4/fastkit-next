@@ -64,6 +64,7 @@
     "@fastkit/media-match": "workspace:*",
     "@fastkit/media-match-gen": "workspace:*",
     "@fastkit/rules": "workspace:*",
+    "@fastkit/stylebase": "workspace:*",
     "@fastkit/tiny-logger": "workspace:*",
     "@fastkit/vue-app-layout": "workspace:*",
     "@fastkit/vue-color-scheme": "workspace:*",

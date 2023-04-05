@@ -1,3 +1,5 @@
-.v-card-content {
-  padding: var(--card-content-padding);
+@layer vui {
+  .v-card-content {
+    padding: var(--card-content-padding);
+  }
 }

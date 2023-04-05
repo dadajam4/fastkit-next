@@ -1,32 +1,34 @@
-.v-drawer-layout {
-  display: block;
-  width: 100%;
-  height: 100%;
-
-  &__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+@layer vui {
+  .v-drawer-layout {
+    display: block;
     width: 100%;
     height: 100%;
-  }
 
-  &__header {
-    display: flex;
-    flex: 0 0 var(--val-topToolbar-height);
-    align-items: center;
-    justify-content: center;
-    height: var(--val-topToolbar-height);
-  }
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      height: 100%;
+    }
 
-  &__body {
-    flex: 1 1 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+    &__header {
+      display: flex;
+      flex: 0 0 var(--val-topToolbar-height);
+      align-items: center;
+      justify-content: center;
+      height: var(--val-topToolbar-height);
+    }
 
-  &__footer {
-    flex: 0 0 auto;
-    margin-top: auto;
+    &__body {
+      flex: 1 1 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    &__footer {
+      flex: 0 0 auto;
+      margin-top: auto;
+    }
   }
 }

@@ -7,7 +7,7 @@ import { VuiServiceOptions } from '@fastkit/vui';
 import { render } from 'eta';
 import { VitePluginVuiError } from './logger';
 
-const COLOR_DUMP_STYLE = `@include dump-color-scheme(true);`;
+const COLOR_DUMP_STYLE = `@layer vui-normalize, vui-color-scheme, vui; @include dump-color-scheme(true, "vui-color-scheme");`;
 
 const TEMPLATE = `
 /* eslint-disable */

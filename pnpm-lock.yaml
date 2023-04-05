@@ -44,7 +44,7 @@ importers:
       '@tiptap/starter-kit': 2.0.0-beta.220
       '@tiptap/vue-3': 2.0.0-beta.220
       '@types/fs-extra': ^11.0.1
-      '@types/node': ^18.15.11
+      '@types/node': ^18.11.19
       '@types/prismjs': ^1.26.0
       '@vanilla-extract/css': ^1.11.0
       '@vanilla-extract/css-utils': ^0.1.3
@@ -815,6 +815,7 @@ importers:
       '@fastkit/media-match': workspace:*
       '@fastkit/media-match-gen': workspace:*
       '@fastkit/rules': workspace:*
+      '@fastkit/stylebase': workspace:^0.12.8
       '@fastkit/tiny-logger': workspace:*
       '@fastkit/vue-app-layout': workspace:*
       '@fastkit/vue-color-scheme': workspace:*
@@ -853,6 +854,7 @@ importers:
       '@fastkit/media-match': link:../media-match
       '@fastkit/media-match-gen': link:../media-match-gen
       '@fastkit/rules': link:../rules
+      '@fastkit/stylebase': link:../stylebase
       '@fastkit/tiny-logger': link:../tiny-logger
       '@fastkit/vue-app-layout': link:../vue-app-layout
       '@fastkit/vue-color-scheme': link:../vue-color-scheme
