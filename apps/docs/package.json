@@ -1,0 +1,24 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vot",
+    "build": "vot build",
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@fastkit/vite-plugin-vui": "workspace:*",
+    "@fastkit/vot": "workspace:*"
+  },
+  "devDependencies": {
+    "@mdi/svg": "^7.2.96",
+    "vite-tsconfig-paths": "^4.0.8"
+  }
+}
