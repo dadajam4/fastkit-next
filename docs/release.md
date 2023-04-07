@@ -41,6 +41,8 @@ Fastkit typically performs pull-request based releases. This is performed by the
 
 Pre-releases are complex. Please read the [changesets documentation](https://github.com/changesets/changesets/blob/main/docs/prereleases.md) first to fully understand how it works.
 
+1. Run `pnpm changeset pre enter next` to enter pre-release mode.
+
 1. While in pre-release mode, all releases, whether PR-based or manual, are treated as pre-releases.
 
 1. When you are ready to officially release the package, run `pnpm changeset pre exit` to exit pre-release mode.
