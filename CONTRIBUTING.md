@@ -9,6 +9,7 @@ You are also welcome to contribute to the code. Please read the guide below and 
 
 - [How to start development](./docs/development.md)
 - [Creating a pull request](./docs/pull-request.md)
+- [Release Workflow](./docs/release.md)
 
 ## License
 
