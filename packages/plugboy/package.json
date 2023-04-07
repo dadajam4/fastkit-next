@@ -1,14 +1,15 @@
 {
   "name": "@fastkit/plugboy",
-  "type": "module",
-  "bin": {
-    "plugboy": "./cli.mjs"
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dadajam4/fastkit.git"
   },
-  "files": [
-    "env.d.ts",
-    "cli.mjs",
-    "dist"
-  ],
+  "license": "MIT",
+  "author": "dadajam4",
+  "type": "module",
   "exports": {
     "./package.json": "./package.json",
     "./dependencies/bundle-require": {
@@ -42,7 +43,8 @@
       "import": "./dist/plugboy.mjs"
     }
   },
-  "types": "dist/plugboy.d.ts",
+  "main": "./dist/plugboy.mjs",
+  "types": "./dist/plugboy.d.ts",
   "typesVersions": {
     "*": {
       ".": [
@@ -56,8 +58,14 @@
       ]
     }
   },
-  "version": "1.1.0",
-  "description": "",
+  "bin": {
+    "plugboy": "./cli.mjs"
+  },
+  "files": [
+    "env.d.ts",
+    "cli.mjs",
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
@@ -67,13 +75,6 @@
     "format": "pnpm run eslint:fix",
     "typecheck": "tsc --noEmit --skipLibCheck",
     "test": "vitest run"
-  },
-  "keywords": [],
-  "author": "dadajam4",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dadajam4/fastkit.git"
   },
   "dependencies": {
     "bundle-require": "^4.0.1",
