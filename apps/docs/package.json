@@ -1,5 +1,6 @@
 {
   "name": "docs",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,8 +14,17 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@fastkit/helpers": "workspace:^0.12.9",
+    "@fastkit/icon-font": "workspace:^0.12.9",
+    "@fastkit/media-match": "workspace:^0.12.9",
     "@fastkit/vite-plugin-vui": "workspace:*",
-    "@fastkit/vot": "workspace:*"
+    "@fastkit/vot": "workspace:*",
+    "@fastkit/vue-app-layout": "workspace:^0.12.9",
+    "@fastkit/vue-loading": "workspace:^0.12.9",
+    "@fastkit/vue-scroller": "workspace:^0.12.9",
+    "@fastkit/vue-stack": "workspace:^0.12.9",
+    "@fastkit/vui": "workspace:^0.12.9",
+    "@fastkit/vui-wysiwyg": "workspace:^0.0.0"
   },
   "devDependencies": {
     "@mdi/svg": "^7.2.96",

@@ -1,7 +1,7 @@
 import { defineComponent, PropType } from 'vue';
 import { PackageInfo } from '../../schemes';
 import { PackageProvide } from '../../package-provide';
-import { defineSlotsProps } from '@fastkit/vue-utils';
+import { defineSlotsProps } from '@fastkit/vui';
 
 export const VPackageProvider = defineComponent({
   name: 'VPackageProvider',

@@ -1,5 +1,5 @@
 import type { Path } from '../path';
-import { RequiredPackageJSON } from './_utils';
+import { RequiredPackageJSON, MarkRequired } from './_utils';
 import type { PlugboyProject } from '../project';
 import type { UserPluginOption, Plugin } from './plugin';
 import type { UserHooks, BuildedHooks } from './hook';
@@ -16,13 +16,11 @@ type WorkspaceRequiredField = (typeof WORKSPACE_REQUIRED_FIELDS)[number];
 export interface RawWorkspaceEntryObject {
   /**
    * Entry file path
-   *
    * @remarks It must be relative to the root directory of the workspace.
    */
   src: string;
   /**
    * Set to true if the entry outputs css at the same time
-   *
    * @remarks By doing this, the exports field in package.json will be set automatically.
    */
   css?: boolean;
@@ -31,7 +29,10 @@ export interface RawWorkspaceEntryObject {
 /**
  * Entry setting object
  */
-export type WorkspaceEntry = Required<RawWorkspaceEntryObject>;
+export type WorkspaceEntry = MarkRequired<
+  RawWorkspaceEntryObject,
+  'src' | 'css'
+>;
 
 export type RawWorkspaceEntry = string | RawWorkspaceEntryObject;
 

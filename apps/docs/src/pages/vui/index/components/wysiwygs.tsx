@@ -2,13 +2,15 @@ import './wysiwygs.scss';
 import { defineComponent, ref } from 'vue';
 import {
   VHero,
-  VWysiwygEditor,
   ControlSize,
   CONTROL_SIZES,
   VSwitch,
   CONTROL_FIELD_VARIANTS,
   ControlFieldVariant,
   VSelect,
+} from '@fastkit/vui';
+import {
+  VWysiwygEditor,
   createWysiwygColorTool,
   WysiwygFormatBoldTool,
   WysiwygFormatItalicTool,
@@ -19,7 +21,7 @@ import {
   WysiwygHistoryTool,
   WysiwygLinter,
   WysiwygLinterBadWords,
-} from '@fastkit/vui';
+} from '@fastkit/vui-wysiwyg';
 import { DocsSection } from '../../../-components';
 
 const extensions = [
