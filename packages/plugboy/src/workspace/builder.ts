@@ -356,6 +356,8 @@ function __plugboyPublicDir(...paths) {
             await fs.writeFile(filePath, replaced.trimStart(), 'utf-8');
           }),
         );
+
+        await this.workspace.hooks.onSuccess(this, _outputFiles);
       },
     });
 

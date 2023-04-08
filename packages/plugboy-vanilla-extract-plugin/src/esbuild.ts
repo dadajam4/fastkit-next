@@ -7,6 +7,7 @@ export function ESBuildVanillaExtract(
   options: PluginOptions = {},
 ): ESBuildPlugin {
   const { esbuildOptions = {} } = options;
+
   return vanillaExtractPlugin({
     ...options,
     esbuildOptions: {
