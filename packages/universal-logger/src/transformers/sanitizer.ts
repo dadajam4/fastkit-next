@@ -1,7 +1,7 @@
 import { Transformer } from '../schemes';
-import { Cloner } from '@fastkit/helpers';
-import type { ClonerValueProcesser } from '@fastkit/helpers';
-export type { ClonerValueProcesser as SanitizeValueProcesser } from '@fastkit/helpers';
+import { Cloner } from '@fastkit/cloner';
+import type { ClonerValueProcesser } from '@fastkit/cloner';
+export type { ClonerValueProcesser as SanitizeValueProcesser } from '@fastkit/cloner';
 
 export type SanitizeFilter = (key: string, value: any) => any;
 

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { safeJSONStringify, consoleColorString } from '@fastkit/helpers';
+import { consoleColorString } from '@fastkit/tiny-logger';
+import { safeJSONStringify } from '@fastkit/json';
 import {
   Transport,
   LogLevelThreshold,

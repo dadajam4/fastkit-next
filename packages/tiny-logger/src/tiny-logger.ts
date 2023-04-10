@@ -1,4 +1,4 @@
-import { ConsoleColorPaletteName, consoleColorString } from '@fastkit/helpers';
+import { ConsoleColorPaletteName, consoleColorString } from './console-color';
 
 const TINY_LOGGER_LOG_TYPES = [
   'debug',

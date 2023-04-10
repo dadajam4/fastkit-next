@@ -3,7 +3,7 @@ import {
   createJavaScriptTransition,
   ExtractPropInput,
 } from '@fastkit/vue-utils';
-import { addTransitionendEvent } from '@fastkit/helpers';
+import { addTransitionendEvent } from '@fastkit/dom';
 
 const HORIZONTAL_MARGIN = 24;
 const SAFE_TIMEOUT = 1000;

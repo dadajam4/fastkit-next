@@ -1,6 +1,6 @@
 import { PropType, RendererElement } from 'vue';
 import { createJavaScriptTransition } from '../utils';
-import { addTransitionendEvent } from '@fastkit/helpers';
+import { addTransitionendEvent } from '@fastkit/dom';
 
 interface HTMLExpandElement extends HTMLElement {
   _parent?: (Node & ParentNode & HTMLElement) | null;

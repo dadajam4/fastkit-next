@@ -4,7 +4,8 @@ import {
   AsyncFn,
 } from './schemes';
 import type { AsyncHandler } from './handler';
-import { clone, arrayRemove } from '@fastkit/helpers';
+import { arrayRemove } from '@fastkit/helpers';
+import { clone } from '@fastkit/cloner';
 import { CacheDetailsWithRemainingTimes } from '@fastkit/cache-control';
 
 /**

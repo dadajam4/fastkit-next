@@ -1,7 +1,8 @@
 import { DirectiveBinding, ObjectDirective, App } from 'vue';
 import { installDirective } from './utils';
 import { disableBodyScroll, enableBodyScroll } from '@fastkit/body-scroll-lock';
-import { pushDynamicStyle, IN_WINDOW } from '@fastkit/helpers';
+import { IN_WINDOW } from '@fastkit/helpers';
+import { pushDynamicStyle } from '@fastkit/dom';
 
 export type BodyScrollLockDirectiveBindingValue = boolean | undefined | void;
 

@@ -45,6 +45,10 @@
       "path": "packages/cookies"
     },
     {
+      "name": "📦 @fastkit/debounce",
+      "path": "packages/debounce"
+    },
+    {
       "name": "📦 @fastkit/duration",
       "path": "packages/duration"
     },
@@ -81,6 +85,10 @@
       "path": "packages/icon-font-gen"
     },
     {
+      "name": "📦 @fastkit/json",
+      "path": "packages/json"
+    },
+    {
       "name": "📦 @fastkit/keyboard",
       "path": "packages/keyboard"
     },
@@ -99,6 +107,10 @@
     {
       "name": "📦 @fastkit/nodepack",
       "path": "packages/nodepack"
+    },
+    {
+      "name": "📦 @fastkit/object-path",
+      "path": "packages/object-path"
     },
     {
       "name": "📦 @fastkit/plugboy",
@@ -137,8 +149,16 @@
       "path": "packages/stylelint-config"
     },
     {
+      "name": "📦 @fastkit/tiny-hash",
+      "path": "packages/tiny-hash"
+    },
+    {
       "name": "📦 @fastkit/tiny-logger",
       "path": "packages/tiny-logger"
+    },
+    {
+      "name": "📦 @fastkit/ts-type-utils",
+      "path": "packages/ts-type-utils"
     },
     {
       "name": "📦 @fastkit/universal-logger",
@@ -207,6 +227,10 @@
     {
       "name": "📦 @fastkit/vui",
       "path": "packages/vui"
+    },
+    {
+      "name": "📦 @fastkit/vui-wysiwyg",
+      "path": "packages/vui-wysiwyg"
     }
   ],
 	"settings": {

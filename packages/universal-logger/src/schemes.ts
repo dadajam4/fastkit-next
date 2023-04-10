@@ -1,4 +1,4 @@
-import { ConsoleColorPaletteName } from '@fastkit/helpers';
+import { ConsoleColorPaletteName } from '@fastkit/tiny-logger';
 
 export const LOG_LEVELS = ['error', 'warn', 'info', 'trace', 'debug'] as const;
 

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { consoleColorString } from '@fastkit/helpers';
+import { consoleColorString } from '@fastkit/tiny-logger';
 import {
   Transport,
   LogLevel,

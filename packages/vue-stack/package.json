@@ -60,9 +60,11 @@
   },
   "dependencies": {
     "@fastkit/color-scheme": "workspace:*",
+    "@fastkit/dom": "workspace:*",
     "@fastkit/helpers": "workspace:*",
     "@fastkit/tiny-logger": "workspace:*",
     "@fastkit/vue-color-scheme": "workspace:*",
+    "@fastkit/vue-keyboard": "workspace:*",
     "@fastkit/vue-utils": "workspace:*"
   },
   "peerDependencies": {

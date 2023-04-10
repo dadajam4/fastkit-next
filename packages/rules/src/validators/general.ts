@@ -1,5 +1,4 @@
 import * as alphaHelper from './alphaHelper';
-import { safeRemainderOperation } from '@fastkit/helpers';
 import { isEmpty } from '@fastkit/helpers';
 export { isEmpty } from '@fastkit/helpers';
 
@@ -288,6 +287,28 @@ export function isKanaAlphaNumeric(value: unknown): value is string {
 export const creditCardHolderRe = /^[a-z\d ,\-./]+$/i;
 export function isCreditCardHolder(value: unknown) {
   return typeof value === 'string' && creditCardHolderRe.test(value);
+}
+
+export function toComparableNumbers<ARGS extends number[]>(
+  ...args: ARGS
+): [ARGS, number] {
+  let maxFloating = 0;
+  args.forEach((arg) => {
+    const floating: string | undefined = arg.toString().split('.')[1];
+    if (floating) {
+      const { length } = floating;
+      if (length > maxFloating) {
+        maxFloating = length;
+      }
+    }
+  });
+  const offset = 10 ** maxFloating;
+  return [args.map((arg) => arg * offset) as ARGS, offset];
+}
+
+export function safeRemainderOperation(a: number, b: number) {
+  const [[_a, _b]] = toComparableNumbers(a, b);
+  return _a % _b;
 }
 
 export function isMultipleOf(value: any, step: number) {

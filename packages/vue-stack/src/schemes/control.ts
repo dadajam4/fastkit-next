@@ -11,10 +11,10 @@ import type { VueStackService } from '../service';
 import { RouteLocationNormalized } from 'vue-router';
 import {
   colorSchemeProps,
-  // ColorSchemePropsStaticOptions,
   ColorClassesResult,
 } from '@fastkit/vue-color-scheme';
-import { UseKeyboardRef, StyleValue } from '@fastkit/vue-utils';
+import { StyleValue } from '@fastkit/vue-utils';
+import { UseKeyboardRef } from '@fastkit/vue-keyboard';
 import { rawNumberProp, JavaScriptTransition } from '@fastkit/vue-utils';
 
 type DelayTimerProps = 'openDelay' | 'closeDelay';

@@ -1,5 +1,5 @@
 import { DirectiveHook, VNode, ObjectDirective, App } from 'vue';
-import { debounce, Debounced } from '@fastkit/helpers';
+import { debounce, Debounced } from '@fastkit/debounce';
 import { installDirective } from './utils';
 
 export type ResizeDirective = ObjectDirective<

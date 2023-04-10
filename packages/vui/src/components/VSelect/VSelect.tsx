@@ -20,9 +20,8 @@ import {
   createPropsOptions,
   VNodeChildOrSlot,
   resolveVNodeChildOrSlots,
-  useKeyboard,
 } from '@fastkit/vue-utils';
-import {} from '@fastkit/vue-scroller';
+import { useKeyboard } from '@fastkit/vue-keyboard';
 import { VFormControl } from '../VFormControl';
 import {
   VControlField,

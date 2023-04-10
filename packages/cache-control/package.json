@@ -52,6 +52,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fastkit/cloner": "workspace:*",
     "@fastkit/duration": "workspace:*",
     "@fastkit/helpers": "workspace:*"
   },

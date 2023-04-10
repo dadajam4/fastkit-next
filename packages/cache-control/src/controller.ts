@@ -7,7 +7,7 @@ import {
   CacheControllerBehavior,
   CacheDetailsWithRemainingTimes,
 } from './schemes';
-import { clone } from '@fastkit/helpers';
+import { clone } from '@fastkit/cloner';
 import { Duration } from '@fastkit/duration';
 import {
   createCacheDetails,

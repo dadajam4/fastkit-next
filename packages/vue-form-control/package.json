@@ -54,6 +54,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fastkit/debounce": "workspace:*",
+    "@fastkit/dom": "workspace:*",
     "@fastkit/helpers": "workspace:*",
     "@fastkit/rules": "workspace:*",
     "@fastkit/tiny-logger": "workspace:*",

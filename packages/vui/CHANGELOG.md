@@ -1,5 +1,12 @@
 # @fastkit/vui
 
+## 0.12.11
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @fastkit/vue-app-layout@0.12.11
+
 ## 0.12.10
 
 ### Patch Changes

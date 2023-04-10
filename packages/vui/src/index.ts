@@ -4,6 +4,7 @@ export * from '@fastkit/helpers';
 export * from '@fastkit/icon-font';
 export * from '@fastkit/media-match';
 export * from '@fastkit/vue-media-match';
+export * from '@fastkit/vue-keyboard';
 export * from '@fastkit/rules';
 export * from '@fastkit/vue-app-layout';
 export * from '@fastkit/vue-color-scheme';

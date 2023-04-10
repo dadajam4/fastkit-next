@@ -12,7 +12,8 @@ import {
   onBeforeUnmount,
   CSSProperties,
 } from 'vue';
-import { IN_WINDOW, loadImage } from '@fastkit/helpers';
+import { IN_WINDOW } from '@fastkit/helpers';
+import { loadImage } from '@fastkit/dom';
 import { defineSlotsProps } from '@fastkit/vue-utils';
 
 export declare type ImgHTMLAttributesPropOptions = {

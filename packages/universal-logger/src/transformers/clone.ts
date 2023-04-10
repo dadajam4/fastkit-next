@@ -1,5 +1,5 @@
 import { Transformer } from '../schemes';
-import { Cloner, ClonerOptions } from '@fastkit/helpers';
+import { Cloner, ClonerOptions } from '@fastkit/cloner';
 import { SanitizeFilter, SanitizeValueProcesser } from './sanitizer';
 
 export interface CloneOptions {

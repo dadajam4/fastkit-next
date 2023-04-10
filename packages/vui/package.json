@@ -1,6 +1,6 @@
 {
   "name": "@fastkit/vui",
-  "version": "0.12.10",
+  "version": "0.12.11",
   "description": "A simple, extensible UI kit for Vue applications.",
   "keywords": [
     "fastkit",
@@ -59,6 +59,7 @@
   "dependencies": {
     "@fastkit/color-scheme": "workspace:*",
     "@fastkit/color-scheme-gen": "workspace:*",
+    "@fastkit/dom": "workspace:*",
     "@fastkit/helpers": "workspace:*",
     "@fastkit/icon-font": "workspace:*",
     "@fastkit/media-match": "workspace:*",
@@ -69,6 +70,7 @@
     "@fastkit/vue-app-layout": "workspace:*",
     "@fastkit/vue-color-scheme": "workspace:*",
     "@fastkit/vue-form-control": "workspace:*",
+    "@fastkit/vue-keyboard": "workspace:*",
     "@fastkit/vue-loading": "workspace:*",
     "@fastkit/vue-media-match": "workspace:*",
     "@fastkit/vue-scroller": "workspace:*",

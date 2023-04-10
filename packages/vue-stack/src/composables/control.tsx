@@ -16,18 +16,14 @@ import {
   cloneVNode,
 } from 'vue';
 import { useColorClasses } from '@fastkit/vue-color-scheme';
+import { toInt, IN_WINDOW } from '@fastkit/helpers';
+import { attemptFocus, focusFirstDescendant } from '@fastkit/dom';
 import {
-  toInt,
-  attemptFocus,
-  focusFirstDescendant,
-  IN_WINDOW,
-} from '@fastkit/helpers';
-import {
-  useKeyboard,
   clickOutsideDirectiveArgument,
   bodyScrollLockDirectiveArgument,
   StyleValue,
 } from '@fastkit/vue-utils';
+import { useKeyboard } from '@fastkit/vue-keyboard';
 import { useRouter } from 'vue-router';
 import {
   VStackControlState,

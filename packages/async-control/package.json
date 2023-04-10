@@ -52,8 +52,10 @@
   },
   "dependencies": {
     "@fastkit/cache-control": "workspace:*",
+    "@fastkit/cloner": "workspace:*",
     "@fastkit/duration": "workspace:*",
     "@fastkit/helpers": "workspace:*",
+    "@fastkit/tiny-hash": "workspace:*",
     "@fastkit/tiny-logger": "workspace:*"
   },
   "buildOptions": {

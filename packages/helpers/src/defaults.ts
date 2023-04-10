@@ -1,5 +1,5 @@
 import { isNonNullObject } from './object';
-import { WritableKeysOf } from './types';
+import { WritableKeysOf } from '@fastkit/ts-type-utils';
 
 interface AnyObject {
   [key: string | number | symbol]: any;

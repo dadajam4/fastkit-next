@@ -1,12 +1,8 @@
 /**
- * 値が空っぽでないか
+ * Checks if the specified value is empty-like
  *
- * 配列の場合はlengthをチェックする
- * falseは値として認めない（チェックボックスを考慮）
- * value === null
- * || value === undefined
- * || value === ''
- * || Array.isArray(value) && value.length === 0
+ * - For arrays, check length
+ * - `false`, `null`, `undefined`, `""` is considered "value is empty"
  */
 export function isEmpty(value: any): boolean {
   if (typeof value === 'function') return false;

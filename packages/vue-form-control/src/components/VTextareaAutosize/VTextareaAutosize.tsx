@@ -12,7 +12,8 @@ import {
   NumberishPropOption,
   resolveNumberish,
 } from '@fastkit/vue-utils';
-import { ownerWindow, debounce } from '@fastkit/helpers';
+import { ownerWindow } from '@fastkit/dom';
+import { debounce } from '@fastkit/debounce';
 import { logger } from '../../logger';
 
 function getStyleValue(
