@@ -1,5 +1,21 @@
 # @fastkit/vite-kit
 
+## 0.12.11
+
+### Patch Changes
+
+- test release
+
+- Updated dependencies []:
+  - @fastkit/color-scheme-gen@0.12.11
+  - @fastkit/hashed-sync@0.12.11
+  - @fastkit/helpers@0.12.11
+  - @fastkit/icon-font-gen@0.12.11
+  - @fastkit/media-match-gen@0.12.11
+  - @fastkit/node-util@0.12.11
+  - @fastkit/sprite-images@0.12.11
+  - @fastkit/tiny-logger@0.12.11
+
 ## 0.12.10
 
 ### Patch Changes

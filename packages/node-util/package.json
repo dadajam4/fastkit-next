@@ -1,6 +1,6 @@
 {
   "name": "@fastkit/node-util",
-  "version": "0.12.10",
+  "version": "0.12.11",
   "description": "Utilities for Node.js server and tool implementation.",
   "keywords": [
     "fastkit",

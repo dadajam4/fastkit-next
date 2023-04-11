@@ -1,5 +1,17 @@
 # @fastkit/media-match-gen
 
+## 0.12.11
+
+### Patch Changes
+
+- test release
+
+- Updated dependencies []:
+  - @fastkit/ev@0.12.11
+  - @fastkit/media-match@0.12.11
+  - @fastkit/node-util@0.12.11
+  - @fastkit/tiny-logger@0.12.11
+
 ## 0.12.10
 
 ### Patch Changes

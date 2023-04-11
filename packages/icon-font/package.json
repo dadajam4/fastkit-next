@@ -1,6 +1,6 @@
 {
   "name": "@fastkit/icon-font",
-  "version": "0.12.10",
+  "version": "0.12.11",
   "description": "Helper to handle icon definitions for Type safe.",
   "keywords": [
     "fastkit",
