@@ -58,7 +58,7 @@
     "@fastkit/tiny-logger": "workspace:*"
   },
   "devDependencies": {
-    "@datadog/browser-logs": "^4.37.0"
+    "@datadog/browser-logs": "^4.38.0"
   },
   "peerDependencies": {
     "@datadog/browser-logs": "^4.36.0"

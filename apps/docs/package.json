@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "@mdi/svg": "^7.2.96",
-    "vite-tsconfig-paths": "^4.0.8"
+    "vite-tsconfig-paths": "^4.1.0"
   }
 }
