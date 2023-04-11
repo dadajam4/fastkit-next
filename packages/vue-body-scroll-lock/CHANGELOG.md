@@ -1,13 +1,7 @@
 # @fastkit/vue-body-scroll-lock
 
-## 0.0.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-- Updated dependencies []:
-  - @fastkit/body-scroll-lock@0.12.11
-  - @fastkit/dom@0.0.1
-  - @fastkit/helpers@0.12.11
-  - @fastkit/vue-utils@0.12.11
+- First Release in Repository Migration.

@@ -1,10 +1,7 @@
 # @fastkit/merge
 
-## 0.0.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-- Updated dependencies []:
-  - @fastkit/helpers@0.12.11
+- First Release in Repository Migration.

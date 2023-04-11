@@ -1,28 +1,7 @@
 # @fastkit/media-match
 
-## 0.12.11
+## 1.0.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-- Updated dependencies []:
-  - @fastkit/plugboy@0.0.3
-
-## 0.12.10
-
-### Patch Changes
-
-- test release
-
-- Updated dependencies []:
-  - @fastkit/plugboy@0.0.2
-
-## 0.12.9
-
-### Patch Changes
-
-- test release
-
-- Updated dependencies []:
-  - @fastkit/plugboy@0.0.1
+- First Release in Repository Migration.

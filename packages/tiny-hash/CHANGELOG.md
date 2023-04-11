@@ -1,10 +1,7 @@
 # @fastkit/tiny-hash
 
-## 0.0.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-- Updated dependencies []:
-  - @fastkit/json@0.0.1
+- First Release in Repository Migration.

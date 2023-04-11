@@ -1,7 +1,7 @@
 # @fastkit/ts-type-utils
 
-## 0.0.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
+- First Release in Repository Migration.

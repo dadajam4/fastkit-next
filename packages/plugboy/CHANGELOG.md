@@ -1,19 +1,7 @@
 # @fastkit/plugboy
 
-## 0.0.3
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-## 0.0.2
-
-### Patch Changes
-
-- test release
-
-## 0.0.1
-
-### Patch Changes
-
-- test release
+- First Release in Repository Migration.

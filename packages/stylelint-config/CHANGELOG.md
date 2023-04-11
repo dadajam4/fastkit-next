@@ -1,19 +1,7 @@
 # @fastkit/stylelint-config
 
-## 0.12.11
+## 0.13.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-## 0.12.10
-
-### Patch Changes
-
-- test release
-
-## 0.12.9
-
-### Patch Changes
-
-- test release
+- First Release in Repository Migration.

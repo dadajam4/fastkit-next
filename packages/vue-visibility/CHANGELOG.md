@@ -1,10 +1,7 @@
 # @fastkit/vue-visibility
 
-## 0.0.1
+## 0.1.0
 
-### Patch Changes
+### Minor Changes
 
-- test release
-
-- Updated dependencies []:
-  - @fastkit/visibility@0.12.11
+- First Release in Repository Migration.
