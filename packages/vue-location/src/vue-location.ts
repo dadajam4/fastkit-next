@@ -6,7 +6,6 @@ import {
   onBeforeUnmount,
   nextTick,
 } from 'vue';
-// import type { UnwrapNestedRefs } from '@vue/reactivity';
 import type {
   Router,
   _RouteLocationBase,
@@ -20,7 +19,7 @@ import {
   getRouteQuery,
   RouteQueryType,
   getQueryMergedLocation,
-} from '../utils';
+} from '@fastkit/vue-utils';
 
 function clone<T>(source: T): T {
   return JSON.parse(JSON.stringify(source));

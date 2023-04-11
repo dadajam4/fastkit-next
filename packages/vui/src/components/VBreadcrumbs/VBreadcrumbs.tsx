@@ -1,13 +1,13 @@
 import './VBreadcrumbs.scss';
 
 import { defineComponent, PropType, VNodeChild, computed } from 'vue';
-import { VLink, NavigationableInheritProps } from '@fastkit/vue-utils';
+import { VAction, ActionableInheritProps } from '@fastkit/vue-action';
 import { useVui } from '../../injections';
 import type { VuiService } from '../../service';
 import { RawIconProp, resolveRawIconProp } from '../VIcon';
 
 export interface BreadcrumbsItem
-  extends Pick<NavigationableInheritProps, 'to' | 'disabled'> {
+  extends Pick<ActionableInheritProps, 'to' | 'disabled'> {
   /**
    * "正確なマッチモード" を強制する場合true
    */
@@ -101,14 +101,14 @@ export const VBreadcrumbs = defineComponent({
         if (text) myChildren.push(text);
 
         const itemChild = to ? (
-          <VLink
+          <VAction
             class="v-breadcrumbs__link"
             to={to}
             exactActiveClass="v-breadcrumbs__link--active"
             // exact={exact}
           >
             {myChildren}
-          </VLink>
+          </VAction>
         ) : (
           myChildren
         );

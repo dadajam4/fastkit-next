@@ -5,7 +5,7 @@ import {
   VNode,
   App,
 } from 'vue';
-import { installDirective } from './utils';
+import { installDirective } from '@fastkit/vue-utils';
 
 export type ClickOutsideDirectiveHandler =
   | ((ev: MouseEvent | PointerEvent) => any)
@@ -116,4 +116,12 @@ export interface ClickOutsideDirectiveAttrs {
 
 export function installClickOutsideDirective(app: App) {
   return installDirective(app, 'click-outside', clickOutsideDirective);
+}
+
+declare module 'vue' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface HTMLAttributes extends ClickOutsideDirectiveAttrs {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface AllowedComponentProps extends ClickOutsideDirectiveAttrs {}
 }

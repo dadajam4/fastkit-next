@@ -1,16 +1,13 @@
 import './VChip.scss';
 import { defineComponent, computed, PropType, VNodeChild } from 'vue';
-import {
-  navigationableInheritProps,
-  useNavigationable,
-  renderSlotOrEmpty,
-} from '@fastkit/vue-utils';
+import { renderSlotOrEmpty } from '@fastkit/vue-utils';
+import { actionableInheritProps, useActionable } from '@fastkit/vue-action';
 import { colorSchemeProps, useColorClasses } from '@fastkit/vue-color-scheme';
 import { useVui } from '../../injections';
 import type { IconName } from '../VIcon';
 import { VIcon } from '../VIcon';
 
-// @TODO Unable to resolve dts for `navigationableInheritProps`.
+// @TODO Unable to resolve dts for `actionableInheritProps`.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { RouteLocationRaw } from 'vue-router';
@@ -26,7 +23,7 @@ export type RawVChipIcon = IconName | VChipIcon;
 export function createChipProps() {
   return {
     ...colorSchemeProps(),
-    ...navigationableInheritProps,
+    ...actionableInheritProps,
     size: {
       type: String as PropType<ChipSize>,
       default: 'md',
@@ -76,7 +73,7 @@ export const VChip = defineComponent({
       const _icon = resolveRawVChipIcon(props.endIcon, 'end');
       return _icon && _icon();
     });
-    const navigationable = useNavigationable(ctx, {
+    const actionable = useActionable(ctx, {
       clickableClassName: () => 'v-chip--clickable',
       linkFallbackTag: 'div',
     });
@@ -92,7 +89,7 @@ export const VChip = defineComponent({
     });
 
     return () => {
-      const { Tag, attrs } = navigationable.value;
+      const { Tag, attrs } = actionable.value;
       return (
         <Tag
           {...attrs}

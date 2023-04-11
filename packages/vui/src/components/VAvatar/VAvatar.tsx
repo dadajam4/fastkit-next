@@ -1,10 +1,7 @@
 import './VAvatar.scss';
 import { defineComponent, computed, PropType } from 'vue';
-import {
-  navigationableInheritProps,
-  useNavigationable,
-  renderSlotOrEmpty,
-} from '@fastkit/vue-utils';
+import { renderSlotOrEmpty } from '@fastkit/vue-utils';
+import { actionableInheritProps, useActionable } from '@fastkit/vue-action';
 import { colorSchemeProps, useColorClasses } from '@fastkit/vue-color-scheme';
 import { useVui } from '../../injections';
 import { VBusyImage } from '../VBusyImage';
@@ -21,7 +18,7 @@ export type AvatarSize = (typeof AVATAR_SIZES)[number];
 export function createAvatarProps() {
   return {
     ...colorSchemeProps(),
-    ...navigationableInheritProps,
+    ...actionableInheritProps,
     size: {
       type: [String, Number] as PropType<AvatarSize | number>,
       default: 'md',
@@ -44,7 +41,7 @@ export const VAvatar = defineComponent({
       color: () => props.color || defaults.color,
       variant: () => props.variant || defaults.variant,
     });
-    const navigationable = useNavigationable(ctx, {
+    const actionable = useActionable(ctx, {
       clickableClassName: () => 'v-avatar--clickable',
       linkFallbackTag: 'div',
     });
@@ -71,7 +68,7 @@ export const VAvatar = defineComponent({
 
     return () => {
       const { src } = props;
-      const { Tag, attrs } = navigationable.value;
+      const { Tag, attrs } = actionable.value;
       return (
         <Tag
           {...attrs}

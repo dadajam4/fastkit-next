@@ -10,16 +10,13 @@ import {
   watch,
 } from 'vue';
 import { createListTileProps, listTileEmits, VListTile } from '../VListTile';
-import {
-  ExtractPropInput,
-  renderSlotOrEmpty,
-  VExpandTransition,
-} from '@fastkit/vue-utils';
+import { ExtractPropInput, renderSlotOrEmpty } from '@fastkit/vue-utils';
+import { VExpandTransition } from '@fastkit/vue-transitions';
 import { useVui } from '../../injections';
 import { useRoute } from 'vue-router';
 import { ScopeName } from '@fastkit/color-scheme';
 
-// @TODO Unable to resolve dts for `navigationableInheritProps`.
+// @TODO Unable to resolve dts for `actionableInheritProps`.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { RouteLocationRaw } from 'vue-router';

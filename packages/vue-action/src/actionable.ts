@@ -1,12 +1,11 @@
+import { SetupContext, computed } from 'vue';
+import { RouterLink } from 'vue-router';
 import {
-  PropType,
-  ExtractPropTypes,
-  computed,
-  SetupContext,
-  CSSProperties,
-} from 'vue';
-import { ButtonHTMLAttributes } from 'vue';
-import { RouterLinkProps, RouteLocationRaw, RouterLink } from 'vue-router';
+  UseActionableOptions,
+  ActionableContext,
+  ActionableInheritProps,
+  ActionableTag,
+} from './schemes';
 
 let _defaultRouterLink = RouterLink;
 
@@ -14,84 +13,13 @@ export function setDefaultRouterLink(Component: typeof RouterLink) {
   _defaultRouterLink = Component;
 }
 
-export interface NavigationableInheritPropOptions {
-  tag: PropType<string>;
-  class: PropType<any>;
-  style: PropType<CSSProperties>;
-  to: PropType<RouteLocationRaw>;
-  replace: PropType<boolean>;
-  activeClass: PropType<string>;
-  exactActiveClass: PropType<string>;
-  custom: PropType<boolean>;
-  ariaCurrentValue: {
-    type: PropType<RouterLinkProps['ariaCurrentValue']>;
-    default: 'page';
-  };
-  disabled: PropType<boolean>;
-  href: PropType<string>;
-  target: PropType<string>;
-  rel: PropType<string>;
-  name: PropType<string>;
-  charset: PropType<string>;
-  hreflang: PropType<string>;
-  download: PropType<boolean | string>;
-  media: PropType<string>;
-  ping: PropType<string>;
-  referrerpolicy: PropType<string>;
-  type: PropType<ButtonHTMLAttributes['type']>;
-  linkFallbackTag: PropType<string | (() => string | undefined)>;
-  onClick: PropType<(ev: MouseEvent) => any>;
-}
-
-export const navigationableInheritProps: NavigationableInheritPropOptions =
-  {} as any;
-
-export type NavigationableInheritProps = ExtractPropTypes<
-  typeof navigationableInheritProps
->;
-
-export type NavigationableTag = any;
-
-export interface NavigationableAttrs {
-  to?: RouteLocationRaw;
-  replace?: boolean;
-  activeClass?: string;
-  exactActiveClass?: string;
-  custom?: boolean;
-  ariaCurrentValue?: RouterLinkProps['ariaCurrentValue'];
-  href?: string;
-  target?: string;
-  rel?: string;
-  name?: string;
-  charset?: string;
-  hreflang?: string;
-  download?: boolean | string;
-  media?: string;
-  ping?: string;
-  referrerpolicy?: string;
-  type?: ButtonHTMLAttributes['type'];
-  disabled?: boolean;
-}
-
-export interface NavigationableContext {
-  Tag: NavigationableTag;
-  attrs: Record<string, unknown>;
-  clickable: boolean;
-}
-
-export interface UseNavigationableOptions {
-  clickableClassName?: string | (() => string | undefined);
-  RouterLink?: any;
-  linkFallbackTag?: string | (() => string | undefined);
-}
-
-export function useNavigationable(
+export function useActionable(
   setupContext: SetupContext<any>,
-  opts: UseNavigationableOptions = {},
+  opts: UseActionableOptions = {},
 ) {
-  const ctx = computed<NavigationableContext>(() => {
+  const ctx = computed<ActionableContext>(() => {
     const ctxAttrs = { ...setupContext.attrs } as any;
-    const props: NavigationableInheritProps = { ...ctxAttrs };
+    const props: ActionableInheritProps = { ...ctxAttrs };
     let { clickableClassName } = opts;
     if (typeof clickableClassName === 'function') {
       clickableClassName = clickableClassName();
@@ -127,7 +55,7 @@ export function useNavigationable(
         ? linkFallbackTag()
         : linkFallbackTag;
     const { tag, to, href } = props;
-    let Tag: NavigationableTag;
+    let Tag: ActionableTag;
 
     const dynamicAttrs: Record<string, unknown> = {};
 

@@ -687,10 +687,18 @@ importers:
     devDependencies:
       '@fastkit/vot': link:../vot
 
+  packages/vue-action:
+    specifiers:
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/vue-utils': link:../vue-utils
+
   packages/vue-app-layout:
     specifiers:
       '@fastkit/helpers': workspace:*
       '@fastkit/tiny-logger': workspace:*
+      '@fastkit/vue-body-scroll-lock': workspace:*
+      '@fastkit/vue-resize': workspace:*
       '@fastkit/vue-scroller': workspace:*
       '@fastkit/vue-utils': workspace:*
       vue: ^3.2.47
@@ -698,11 +706,31 @@ importers:
     dependencies:
       '@fastkit/helpers': link:../helpers
       '@fastkit/tiny-logger': link:../tiny-logger
+      '@fastkit/vue-body-scroll-lock': link:../vue-body-scroll-lock
+      '@fastkit/vue-resize': link:../vue-resize
       '@fastkit/vue-scroller': link:../vue-scroller
       '@fastkit/vue-utils': link:../vue-utils
     devDependencies:
       vue: 3.2.47
       vue-router: 4.1.6_vue@3.2.47
+
+  packages/vue-body-scroll-lock:
+    specifiers:
+      '@fastkit/body-scroll-lock': workspace:*
+      '@fastkit/dom': workspace:*
+      '@fastkit/helpers': workspace:*
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/body-scroll-lock': link:../body-scroll-lock
+      '@fastkit/dom': link:../dom
+      '@fastkit/helpers': link:../helpers
+      '@fastkit/vue-utils': link:../vue-utils
+
+  packages/vue-click-outside:
+    specifiers:
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/vue-utils': link:../vue-utils
 
   packages/vue-color-scheme:
     specifiers:
@@ -777,6 +805,12 @@ importers:
       '@fastkit/vue-color-scheme': link:../vue-color-scheme
       '@fastkit/vue-utils': link:../vue-utils
 
+  packages/vue-location:
+    specifiers:
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/vue-utils': link:../vue-utils
+
   packages/vue-media-match:
     specifiers:
       '@fastkit/helpers': workspace:*
@@ -799,6 +833,16 @@ importers:
       '@fastkit/tiny-logger': link:../tiny-logger
       '@fastkit/vue-utils': link:../vue-utils
 
+  packages/vue-resize:
+    specifiers:
+      '@fastkit/debounce': workspace:*
+      '@fastkit/helpers': workspace:*
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/debounce': link:../debounce
+      '@fastkit/helpers': link:../helpers
+      '@fastkit/vue-utils': link:../vue-utils
+
   packages/vue-scroller:
     specifiers:
       '@fastkit/scroller': workspace:*
@@ -818,34 +862,52 @@ importers:
       '@fastkit/dom': workspace:*
       '@fastkit/helpers': workspace:*
       '@fastkit/tiny-logger': workspace:*
+      '@fastkit/vue-body-scroll-lock': workspace:*
+      '@fastkit/vue-click-outside': workspace:*
       '@fastkit/vue-color-scheme': workspace:*
-      '@fastkit/vue-keyboard': workspace:^0.0.0
+      '@fastkit/vue-keyboard': workspace:*
+      '@fastkit/vue-resize': workspace:*
+      '@fastkit/vue-transitions': workspace:*
       '@fastkit/vue-utils': workspace:*
     dependencies:
       '@fastkit/color-scheme': link:../color-scheme
       '@fastkit/dom': link:../dom
       '@fastkit/helpers': link:../helpers
       '@fastkit/tiny-logger': link:../tiny-logger
+      '@fastkit/vue-body-scroll-lock': link:../vue-body-scroll-lock
+      '@fastkit/vue-click-outside': link:../vue-click-outside
       '@fastkit/vue-color-scheme': link:../vue-color-scheme
       '@fastkit/vue-keyboard': link:../vue-keyboard
+      '@fastkit/vue-resize': link:../vue-resize
+      '@fastkit/vue-transitions': link:../vue-transitions
+      '@fastkit/vue-utils': link:../vue-utils
+
+  packages/vue-transitions:
+    specifiers:
+      '@fastkit/dom': workspace:*
+      '@fastkit/helpers': workspace:*
+      '@fastkit/vue-utils': workspace:*
+    dependencies:
+      '@fastkit/dom': link:../dom
+      '@fastkit/helpers': link:../helpers
       '@fastkit/vue-utils': link:../vue-utils
 
   packages/vue-utils:
     specifiers:
-      '@fastkit/body-scroll-lock': workspace:*
-      '@fastkit/debounce': workspace:*
-      '@fastkit/dom': workspace:*
       '@fastkit/helpers': workspace:*
       '@fastkit/visibility': workspace:*
       vue-router: ^4.1.0
     dependencies:
-      '@fastkit/body-scroll-lock': link:../body-scroll-lock
-      '@fastkit/debounce': link:../debounce
-      '@fastkit/dom': link:../dom
       '@fastkit/helpers': link:../helpers
       '@fastkit/visibility': link:../visibility
     devDependencies:
       vue-router: 4.1.6
+
+  packages/vue-visibility:
+    specifiers:
+      '@fastkit/visibility': workspace:*
+    dependencies:
+      '@fastkit/visibility': link:../visibility
 
   packages/vui:
     specifiers:
@@ -859,14 +921,20 @@ importers:
       '@fastkit/rules': workspace:*
       '@fastkit/stylebase': workspace:*
       '@fastkit/tiny-logger': workspace:*
+      '@fastkit/vue-action': workspace:*
       '@fastkit/vue-app-layout': workspace:*
+      '@fastkit/vue-body-scroll-lock': workspace:*
+      '@fastkit/vue-click-outside': workspace:*
       '@fastkit/vue-color-scheme': workspace:*
       '@fastkit/vue-form-control': workspace:*
-      '@fastkit/vue-keyboard': workspace:^0.0.0
+      '@fastkit/vue-keyboard': workspace:*
       '@fastkit/vue-loading': workspace:*
+      '@fastkit/vue-location': workspace:*
       '@fastkit/vue-media-match': workspace:*
+      '@fastkit/vue-resize': workspace:*
       '@fastkit/vue-scroller': workspace:*
       '@fastkit/vue-stack': workspace:*
+      '@fastkit/vue-transitions': workspace:*
       '@fastkit/vue-utils': workspace:*
     dependencies:
       '@fastkit/color-scheme': link:../color-scheme
@@ -879,14 +947,20 @@ importers:
       '@fastkit/rules': link:../rules
       '@fastkit/stylebase': link:../stylebase
       '@fastkit/tiny-logger': link:../tiny-logger
+      '@fastkit/vue-action': link:../vue-action
       '@fastkit/vue-app-layout': link:../vue-app-layout
+      '@fastkit/vue-body-scroll-lock': link:../vue-body-scroll-lock
+      '@fastkit/vue-click-outside': link:../vue-click-outside
       '@fastkit/vue-color-scheme': link:../vue-color-scheme
       '@fastkit/vue-form-control': link:../vue-form-control
       '@fastkit/vue-keyboard': link:../vue-keyboard
       '@fastkit/vue-loading': link:../vue-loading
+      '@fastkit/vue-location': link:../vue-location
       '@fastkit/vue-media-match': link:../vue-media-match
+      '@fastkit/vue-resize': link:../vue-resize
       '@fastkit/vue-scroller': link:../vue-scroller
       '@fastkit/vue-stack': link:../vue-stack
+      '@fastkit/vue-transitions': link:../vue-transitions
       '@fastkit/vue-utils': link:../vue-utils
 
   packages/vui-wysiwyg:

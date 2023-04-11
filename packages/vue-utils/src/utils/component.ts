@@ -5,19 +5,12 @@ import {
   ComponentCustomOptions,
 } from 'vue';
 
-// export type RawSlotValidators = Record<string, (...args: any[]) => boolean>;
-
-// export type ResolvedSlots<V extends RawSlotValidators> = {
-//   [K in keyof V]?: (...args: Parameters<V[K]>) => VNodeChild; //VNode[];
-// };
-
 export type ExtractComponentPropTypes<
   C extends {
     setup?: DefineComponent<any>['setup'];
   },
 > = Parameters<NonNullable<C['setup']>>[0];
 
-// export type RawSlotsSettings = Record<string, any[]>;
 export interface RawSlotsSettings {
   [key: string]: any;
 }

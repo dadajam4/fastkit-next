@@ -18,11 +18,9 @@ import {
 import { useColorClasses } from '@fastkit/vue-color-scheme';
 import { toInt, IN_WINDOW } from '@fastkit/helpers';
 import { attemptFocus, focusFirstDescendant } from '@fastkit/dom';
-import {
-  clickOutsideDirectiveArgument,
-  bodyScrollLockDirectiveArgument,
-  StyleValue,
-} from '@fastkit/vue-utils';
+import { StyleValue } from '@fastkit/vue-utils';
+import { clickOutsideDirectiveArgument } from '@fastkit/vue-click-outside';
+import { bodyScrollLockDirectiveArgument } from '@fastkit/vue-body-scroll-lock';
 import { useKeyboard } from '@fastkit/vue-keyboard';
 import { useRouter } from 'vue-router';
 import {

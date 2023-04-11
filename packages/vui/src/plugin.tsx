@@ -10,6 +10,9 @@ import {
   installVueStackPlugin,
   VueStackServiceOptions,
 } from '@fastkit/vue-stack';
+import { installBodyScrollLockDirective } from '@fastkit/vue-body-scroll-lock';
+import { installClickOutsideDirective } from '@fastkit/vue-click-outside';
+import { installResizeDirective } from '@fastkit/vue-resize';
 import { VueColorSchemePlugin } from '@fastkit/vue-color-scheme';
 import { installVueAppLayout } from '@fastkit/vue-app-layout';
 import { onAppUnmount } from '@fastkit/vue-utils';
@@ -79,6 +82,9 @@ export class VuiPlugin {
     });
 
     installVueAppLayout(app);
+    installBodyScrollLockDirective(app);
+    installClickOutsideDirective(app);
+    installResizeDirective(app);
 
     // Vui
     const $vui = new VuiService(opts, app.config.globalProperties.$vstack);

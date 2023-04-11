@@ -1,8 +1,6 @@
 import { nextTick, RendererElement, ExtractPropTypes } from 'vue';
-import {
-  createJavaScriptTransition,
-  ExtractPropInput,
-} from '@fastkit/vue-utils';
+import { ExtractPropInput } from '@fastkit/vue-utils';
+import { generateJavaScriptTransition } from '@fastkit/vue-transitions';
 import { addTransitionendEvent } from '@fastkit/dom';
 
 const HORIZONTAL_MARGIN = 24;
@@ -33,10 +31,10 @@ export type VSnackbarTransitionResolvedProps = ExtractPropTypes<
   typeof stackSnackbarTransitionProps
 >;
 
-export const VSnackbarTransition = createJavaScriptTransition({
+export const VSnackbarTransition = generateJavaScriptTransition({
   displayName: 'VSnackbarTransition',
   props: stackSnackbarTransitionProps,
-  render(props) {
+  setup(props) {
     const { top, left, right } = props;
     const hasHorizontal = left || right;
     const marginProp = top ? 'marginTop' : 'marginBottom';

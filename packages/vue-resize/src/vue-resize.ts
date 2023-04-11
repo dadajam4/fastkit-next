@@ -1,6 +1,6 @@
 import { DirectiveHook, VNode, ObjectDirective, App } from 'vue';
 import { debounce, Debounced } from '@fastkit/debounce';
-import { installDirective } from './utils';
+import { installDirective } from '@fastkit/vue-utils';
 
 export type ResizeDirective = ObjectDirective<
   ResizableElement,
@@ -138,4 +138,12 @@ export interface ResizeDirectiveAttrs {
 
 export function installResizeDirective(app: App) {
   return installDirective(app, 'resize', resizeDirective);
+}
+
+declare module 'vue' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface HTMLAttributes extends ResizeDirectiveAttrs {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface AllowedComponentProps extends ResizeDirectiveAttrs {}
 }

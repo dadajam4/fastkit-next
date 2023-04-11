@@ -8,17 +8,12 @@ import {
   watch,
 } from 'vue';
 import { rawIconProp, resolveRawIconProp } from '../VIcon';
-import {
-  renderSlotOrEmpty,
-  navigationableInheritProps,
-  createPropsOptions,
-} from '@fastkit/vue-utils';
+import { renderSlotOrEmpty, createPropsOptions } from '@fastkit/vue-utils';
+import { actionableInheritProps, VAction } from '@fastkit/vue-action';
 import { useScopeColorClass, ScopeName } from '@fastkit/vue-color-scheme';
-// import { useLink } from 'vue-router';
-import { VLink } from '@fastkit/vue-utils';
 import { useVui } from '../../injections';
 
-// @TODO Unable to resolve dts for `navigationableInheritProps`.
+// @TODO Unable to resolve dts for `actionableInheritProps`.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { RouteLocationRaw } from 'vue-router';
@@ -26,7 +21,7 @@ import { RouteLocationRaw } from 'vue-router';
 export function createListTileProps() {
   const icon = rawIconProp();
   return {
-    ...navigationableInheritProps,
+    ...actionableInheritProps,
     ...createPropsOptions({
       startIcon: icon,
       endIcon: icon,
@@ -104,7 +99,7 @@ export const VListTile = defineComponent({
       const _endIcon = endIcon.value;
 
       return (
-        <VLink
+        <VAction
           {...ctx.attrs}
           class={['v-list-tile', classes.value]}
           clickableClassName="v-list-tile--clickable">
@@ -121,7 +116,7 @@ export const VListTile = defineComponent({
               {_endIcon}
             </span>
           )}
-        </VLink>
+        </VAction>
       );
     };
   },

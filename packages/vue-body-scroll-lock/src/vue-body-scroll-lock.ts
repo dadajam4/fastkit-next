@@ -1,5 +1,5 @@
 import { DirectiveBinding, ObjectDirective, App } from 'vue';
-import { installDirective } from './utils';
+import { installDirective } from '@fastkit/vue-utils';
 import { disableBodyScroll, enableBodyScroll } from '@fastkit/body-scroll-lock';
 import { IN_WINDOW } from '@fastkit/helpers';
 import { pushDynamicStyle } from '@fastkit/dom';
@@ -101,4 +101,12 @@ export interface BodyScrollLockDirectiveAttrs {
 
 export function installBodyScrollLockDirective(app: App) {
   return installDirective(app, 'body-scroll-lock', bodyScrollLockDirective);
+}
+
+declare module 'vue' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface HTMLAttributes extends BodyScrollLockDirectiveAttrs {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface AllowedComponentProps extends BodyScrollLockDirectiveAttrs {}
 }

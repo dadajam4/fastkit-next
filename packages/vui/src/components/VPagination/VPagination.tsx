@@ -16,7 +16,7 @@ import {
 import { isPromise } from '@fastkit/helpers';
 import { useRouter, RouterLink } from 'vue-router';
 import { resolveRawIconProp } from '../VIcon';
-import { resizeDirectiveArgument } from '@fastkit/vue-utils';
+import { resizeDirectiveArgument } from '@fastkit/vue-resize';
 import { useScopeColorClass, ScopeName } from '@fastkit/vue-color-scheme';
 import { useVui } from '../../injections';
 

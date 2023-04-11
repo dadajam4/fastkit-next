@@ -17,11 +17,8 @@ import {
   VueAppDrawerControl,
 } from './drawer';
 import { VueAppBar, VueAppBarSettings } from './bar';
-import {
-  installBodyScrollLockDirective,
-  installResizeDirective,
-  useWindow,
-} from '@fastkit/vue-utils';
+import { installResizeDirective, useWindow } from '@fastkit/vue-resize';
+import { installBodyScrollLockDirective } from '@fastkit/vue-body-scroll-lock';
 import { getDocumentScroller, UseScroller } from '@fastkit/vue-scroller';
 import { IN_WINDOW } from '@fastkit/helpers';
 

@@ -12,9 +12,8 @@ import {
   createPropsOptions,
   renderSlotOrEmpty,
   htmlAttributesPropOptions,
-  VLink,
-  navigationableInheritProps,
 } from '@fastkit/vue-utils';
+import { VAction, actionableInheritProps } from '@fastkit/vue-action';
 import { useVui } from '../../injections';
 import { createControlProps, useControl } from '../../composables';
 import { VProgressCircular } from '../loading';
@@ -57,7 +56,7 @@ function resolveRawVButtonIcon(
 export const vueButtonProps = createPropsOptions({
   ...htmlAttributesPropOptions,
   ...colorSchemeProps(),
-  ...navigationableInheritProps,
+  ...actionableInheritProps,
   spacer: [Boolean, String] as PropType<RawVButtonSpacer>,
   rounded: Boolean,
   icon: [String, Function] as PropType<RawVButtonIcon>,
@@ -140,7 +139,7 @@ export const VButton = defineComponent({
     return () => {
       const children = renderSlotOrEmpty(ctx.slots);
       return (
-        <VLink {...ctx.attrs} class={['v-button', classes.value]}>
+        <VAction {...ctx.attrs} class={['v-button', classes.value]}>
           <span class="v-button__content">
             {startIcon.value}
             {children}
@@ -154,7 +153,7 @@ export const VButton = defineComponent({
               size={LOADING_SIZE_MAP[control.size.value]}
             />
           )}
-        </VLink>
+        </VAction>
       );
     };
   },

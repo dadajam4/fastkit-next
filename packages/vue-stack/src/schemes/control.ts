@@ -15,7 +15,8 @@ import {
 } from '@fastkit/vue-color-scheme';
 import { StyleValue } from '@fastkit/vue-utils';
 import { UseKeyboardRef } from '@fastkit/vue-keyboard';
-import { rawNumberProp, JavaScriptTransition } from '@fastkit/vue-utils';
+import { rawNumberProp } from '@fastkit/vue-utils';
+import { JavaScriptTransition } from '@fastkit/vue-transitions';
 
 type DelayTimerProps = 'openDelay' | 'closeDelay';
 

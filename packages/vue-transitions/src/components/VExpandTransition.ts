@@ -1,9 +1,13 @@
 import { PropType, RendererElement } from 'vue';
-import { createJavaScriptTransition } from '../utils';
 import { addTransitionendEvent } from '@fastkit/dom';
+import { capitalize } from '@fastkit/helpers';
+import { generateJavaScriptTransition } from '../generator';
 
+/**
+ * Custom interface of the {@link HTMLElement} to which the {@link VExpandTransition} component is applied
+ */
 interface HTMLExpandElement extends HTMLElement {
-  _parent?: (Node & ParentNode & HTMLElement) | null;
+  /** トランジション開始時のスタイルキャッシュ */
   _initialStyle?: {
     transition: string;
     visibility: string | null;
@@ -13,25 +17,56 @@ interface HTMLExpandElement extends HTMLElement {
   };
 }
 
-export const VExpandTransition = createJavaScriptTransition({
+/**
+ * Transition components that can be opened and closed
+ *
+ * @example
+ * ```html
+ * <script setup>
+ * const opened = ref(false);
+ * const toggle = () => opened.value = !opened.value;
+ * </script>
+ *
+ * <template>
+ *   <button v-on:click="toggle">Toggle</button>
+ *   <VExpandTransition>
+ *     <div class="target" v-show="opened">
+ *       This element is the open/close target.
+ *       The css transition property must be set for this element.
+ *     </div>
+ *   </VExpandTransition>
+ * </template>
+ *
+ * <style>
+ * .target {
+ *   transition: height .2s;
+ * }
+ * </style>
+ * ```
+ */
+export const VExpandTransition = generateJavaScriptTransition({
   displayName: 'VExpandTransition',
   props: {
+    /**
+     * Properties to control opening and closing
+     *
+     * @default "height"
+     */
     expand: {
       type: String as PropType<'width' | 'height'>,
       default: 'height' as const,
     },
-    // className: {
-    //   type: String as PropType<string>,
-    //   default: 'v-expand-transition' as const,
-    // },
   },
-  render(props) {
+  setup(props) {
     const { expand: sizeProperty } = props;
-    const offsetProperty = `offset${
-      sizeProperty.charAt(0).toUpperCase() + sizeProperty.slice(1)
-    }` as 'offsetHeight' | 'offsetWidth';
+    const offsetProperty = `offset${capitalize(sizeProperty)}` as const;
 
-    function resetStyles(_el: RendererElement) {
+    /**
+     * Reset Style
+     *
+     * @param _el - Element to be reset
+     */
+    const resetStyles = (_el: RendererElement) => {
       const el = _el as HTMLExpandElement;
       const { _initialStyle } = el;
       if (!_initialStyle) return;
@@ -41,20 +76,11 @@ export const VExpandTransition = createJavaScriptTransition({
         el.style[sizeProperty] = size;
       }
       delete (el as any)._initialStyle;
-    }
-
-    function afterLeave(_el: RendererElement) {
-      const el = _el as HTMLExpandElement;
-      // if (className && el._parent) {
-      //   el._parent.classList.remove(className);
-      // }
-      resetStyles(el);
-    }
+    };
 
     return {
       onBeforeEnter(_el) {
         const el = _el as HTMLExpandElement;
-        el._parent = el.parentNode as (Node & ParentNode & HTMLElement) | null;
         el._initialStyle = {
           transition: el.style.transition,
           visibility: el.style.visibility,
@@ -76,13 +102,9 @@ export const VExpandTransition = createJavaScriptTransition({
         el.style[sizeProperty] = '0';
 
         // eslint-disable-next-line no-void
-        void el.offsetHeight; // force reflow
+        void el.offsetHeight; // Force reflow
 
         el.style.transition = initialStyle.transition;
-
-        // if (className && el._parent) {
-        //   el._parent.classList.add(className);
-        // }
 
         requestAnimationFrame(() => {
           addTransitionendEvent(el, done, {
@@ -105,7 +127,8 @@ export const VExpandTransition = createJavaScriptTransition({
 
         el.style.overflow = 'hidden';
         el.style[sizeProperty] = `${el[offsetProperty]}px`;
-        void el.offsetHeight; // force reflow
+        // eslint-disable-next-line no-void
+        void el.offsetHeight; // Force reflow
 
         requestAnimationFrame(() => {
           addTransitionendEvent(el, done, {
@@ -115,8 +138,8 @@ export const VExpandTransition = createJavaScriptTransition({
           el.style[sizeProperty] = '0';
         });
       },
-      onAfterLeave: afterLeave,
-      onLeaveCancelled: afterLeave,
+      onAfterLeave: resetStyles,
+      onLeaveCancelled: resetStyles,
     };
   },
 });

@@ -32,13 +32,6 @@ export function getRouteMatchedComponents<
   return [...values].flat();
 }
 
-// async function resolveRouteComponent(Component: RawRouteComponent) {
-//   if (typeof Component === 'function') {
-//     Component = await Component();
-
-//   }
-// }
-
 export interface RouteMatchedItem {
   Component: RawRouteComponent;
   instance: ComponentPublicInstance | null;
@@ -91,9 +84,6 @@ export function getQueryMergedLocation(
 ): _RouteLocationBase {
   return {
     ...route,
-    // name: route.name,
-    // path: route.path,
-    // ...route,
     query: getMergedRouteQuery(query, route.query),
   };
 }

@@ -1,9 +1,9 @@
 import './VCard.scss';
 import { defineComponent, computed } from 'vue';
 import { VPaper, createPaperProps } from '../VPaper';
-import { navigationableInheritProps, VLink } from '@fastkit/vue-utils';
+import { actionableInheritProps, VAction } from '@fastkit/vue-action';
 
-// @TODO Unable to resolve dts for `navigationableInheritProps`.
+// @TODO Unable to resolve dts for `actionableInheritProps`.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { RouteLocationRaw } from 'vue-router';
@@ -11,7 +11,7 @@ import { RouteLocationRaw } from 'vue-router';
 export function createCardProps() {
   return {
     ...createPaperProps(),
-    ...navigationableInheritProps,
+    ...actionableInheritProps,
     disabled: Boolean,
   };
 }
@@ -32,7 +32,7 @@ export const VCard = defineComponent({
           ctx.attrs.class,
           typeof ctx.attrs.onClick === 'function' && 'clickable',
         ],
-        tag: hasLink ? VLink : 'div',
+        tag: hasLink ? VAction : 'div',
       };
       if (props.disabled) {
         attrs.disabled = 'disabled' as any;

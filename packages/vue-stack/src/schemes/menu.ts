@@ -1,6 +1,6 @@
 import { CSSProperties } from '@fastkit/vue-utils';
 import { Ref } from 'vue';
-import type { ResizeDirectivePayload } from '@fastkit/vue-utils';
+import type { ResizeDirectivePayload } from '@fastkit/vue-resize';
 
 export interface VMenuRect {
   left: number;

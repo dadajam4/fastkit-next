@@ -7,7 +7,7 @@ import {
   VueAppLayoutPositionY,
   VAL_BAR_TYPES,
 } from '../../schemes';
-import { ResizeDirectivePayload } from '@fastkit/vue-utils';
+import { ResizeDirectivePayload } from '@fastkit/vue-resize';
 import { objectFromArray } from '@fastkit/helpers';
 import { hasParentLayout, provideLayout } from './injections';
 import { VAL_BOTTOM_ID } from '../../constants';

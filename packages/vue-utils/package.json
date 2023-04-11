@@ -51,9 +51,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@fastkit/body-scroll-lock": "workspace:*",
-    "@fastkit/debounce": "workspace:*",
-    "@fastkit/dom": "workspace:*",
     "@fastkit/helpers": "workspace:*",
     "@fastkit/visibility": "workspace:*"
   },

@@ -17,12 +17,12 @@ import {
   VMenuControl,
 } from '../schemes';
 import { useStackControl } from '../composables';
+import { ExtractPropInput } from '@fastkit/vue-utils';
 import {
-  ExtractPropInput,
   useWindow,
   resizeDirectiveArgument,
   ResizeDirectivePayload,
-} from '@fastkit/vue-utils';
+} from '@fastkit/vue-resize';
 import { logger } from '../logger';
 import { IN_WINDOW } from '@fastkit/helpers';
 
