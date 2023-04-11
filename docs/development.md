@@ -8,7 +8,7 @@ To contribute to Fastkit, you need to set up a local environment.
 
 ### Dependency Installation
 
-1. [Fork](https://help.github.com/articles/fork-a-repo/) the [@dadajam4/fastkit repository](https://github.com/dadajam4/fastkit-next) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device.
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the [@dadajam4/fastkit repository](https://github.com/dadajam4/fastkit) to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device.
 
 1. Ensure using the latest Node.js (18.x)
 
