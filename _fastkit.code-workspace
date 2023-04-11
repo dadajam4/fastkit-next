@@ -29,6 +29,10 @@
       "path": "packages/catcher"
     },
     {
+      "name": "📦 @fastkit/cloner",
+      "path": "packages/cloner"
+    },
+    {
       "name": "📦 @fastkit/color",
       "path": "packages/color"
     },
@@ -41,12 +45,20 @@
       "path": "packages/color-scheme-gen"
     },
     {
+      "name": "📦 @fastkit/comparator",
+      "path": "packages/comparator"
+    },
+    {
       "name": "📦 @fastkit/cookies",
       "path": "packages/cookies"
     },
     {
       "name": "📦 @fastkit/debounce",
       "path": "packages/debounce"
+    },
+    {
+      "name": "📦 @fastkit/dom",
+      "path": "packages/dom"
     },
     {
       "name": "📦 @fastkit/duration",
@@ -99,6 +111,10 @@
     {
       "name": "📦 @fastkit/media-match-gen",
       "path": "packages/media-match-gen"
+    },
+    {
+      "name": "📦 @fastkit/merge",
+      "path": "packages/merge"
     },
     {
       "name": "📦 @fastkit/node-util",
@@ -185,8 +201,20 @@
       "path": "packages/vot-i18n"
     },
     {
+      "name": "📦 @fastkit/vue-action",
+      "path": "packages/vue-action"
+    },
+    {
       "name": "📦 @fastkit/vue-app-layout",
       "path": "packages/vue-app-layout"
+    },
+    {
+      "name": "📦 @fastkit/vue-body-scroll-lock",
+      "path": "packages/vue-body-scroll-lock"
+    },
+    {
+      "name": "📦 @fastkit/vue-click-outside",
+      "path": "packages/vue-click-outside"
     },
     {
       "name": "📦 @fastkit/vue-color-scheme",
@@ -201,8 +229,16 @@
       "path": "packages/vue-i18n"
     },
     {
+      "name": "📦 @fastkit/vue-keyboard",
+      "path": "packages/vue-keyboard"
+    },
+    {
       "name": "📦 @fastkit/vue-loading",
       "path": "packages/vue-loading"
+    },
+    {
+      "name": "📦 @fastkit/vue-location",
+      "path": "packages/vue-location"
     },
     {
       "name": "📦 @fastkit/vue-media-match",
@@ -213,6 +249,10 @@
       "path": "packages/vue-page"
     },
     {
+      "name": "📦 @fastkit/vue-resize",
+      "path": "packages/vue-resize"
+    },
+    {
       "name": "📦 @fastkit/vue-scroller",
       "path": "packages/vue-scroller"
     },
@@ -221,8 +261,16 @@
       "path": "packages/vue-stack"
     },
     {
+      "name": "📦 @fastkit/vue-transitions",
+      "path": "packages/vue-transitions"
+    },
+    {
       "name": "📦 @fastkit/vue-utils",
       "path": "packages/vue-utils"
+    },
+    {
+      "name": "📦 @fastkit/vue-visibility",
+      "path": "packages/vue-visibility"
     },
     {
       "name": "📦 @fastkit/vui",
