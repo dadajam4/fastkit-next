@@ -124,7 +124,6 @@ export const VButton = defineComponent({
 
     const classes = computed(() => [
       color.colorClasses.value,
-      // navigationable.value.classes,
       spacer.value ? `v-button--spacer-${spacer.value}` : undefined,
       `v-button--${control.size.value}`,
       `v-button--align-${props.align}`,
